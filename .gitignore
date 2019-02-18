@@ -32,5 +32,8 @@
 *.app
 
 
-Scenegraphs/Makefile
-Scenegraphs/Scenegraphs.pro
+Scenegraphs/Makefile*
+Scenegraphs/Scenegraphs.pro*
+Scenegraphs/Scenegraphs.pro.*
+Scenegraphs/Scenegraphs.pro.user
+.qmake.stash

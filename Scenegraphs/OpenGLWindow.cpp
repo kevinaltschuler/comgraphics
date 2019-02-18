@@ -29,7 +29,6 @@ OpenGLWindow::OpenGLWindow(QWindow *parent, int argc, char* argv[])
     frames = 0;
     setAnimating(true);
 
-
 }
 
 

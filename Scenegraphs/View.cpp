@@ -16,6 +16,7 @@ View::View()
   trackballTransform = glm::mat4(1.0);
   proj = glm::mat4(1.0);
   scenegraph = NULL;
+  time = 0;
 }
 
 View::~View()
@@ -80,12 +81,29 @@ void View::draw(util::OpenGLFunctions& gl)
          * We use a modelview matrix to store the transformations to be applied to our triangle.
          * Right now this matrix is identity, which means "no transformations"
          */
+  //trackball
   modelview.push(glm::mat4(1.0));
   modelview.top() = modelview.top() *
       glm::lookAt(glm::vec3(0.0f,50.0f,80.0f),
                   glm::vec3(0.0f,50.0f,0.0f),
                   glm::vec3(0.0f,1.0f,0.0f)) *
       trackballTransform;
+
+  // auto rotate
+//  modelview.top() = modelview.top() *
+//      glm::lookAt(glm::vec3(0.0f,50.0f,80.0f),
+//                  glm::vec3(0.0f,50.0f,0.0f),
+//                  glm::vec3(0.0f,1.0f,0.0f)) *
+//      glm::rotate(glm::mat4(1.0), glm::radians((float)time), glm::vec3(0.0f,1.0f,0.0f));
+
+  // stationary
+//  modelview.top() = modelview.top() *
+//      glm::lookAt(glm::vec3(0.0f,50.0f,200.0f),
+//                  glm::vec3(0.0f,50.0f,0.0f),
+//                  glm::vec3(0.0f,1.0f,0.0f));
+
+  time += 1;
+  time = time % 360;
 
 
   /*

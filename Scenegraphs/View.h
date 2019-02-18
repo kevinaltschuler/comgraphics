@@ -55,6 +55,7 @@ public:
     void mouseDragged(int x,int y);
 
 private:
+    int time;
     //record the current window width and height
     int WINDOW_WIDTH,WINDOW_HEIGHT;
     //the projection matrix
