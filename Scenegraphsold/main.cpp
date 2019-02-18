@@ -7,7 +7,7 @@ int main(int argc, char *argv[])
    QApplication app(argc, argv);
 
    //add our window to this application
-   OpenGLWindow window;
+   OpenGLWindow window(0, argc, argv);
 
    //show this window
    window.show();
