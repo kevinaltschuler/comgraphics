@@ -91,11 +91,17 @@ void View::draw(util::OpenGLFunctions& gl)
 
 
   // auto rotate
+//  modelview.top() = modelview.top() *
+//      glm::lookAt(glm::vec3(0.0f,50.0f,80.0f),
+//                  glm::vec3(0.0f,50.0f,0.0f),
+//                  glm::vec3(0.0f,1.0f,0.0f)) *
+//      glm::rotate(glm::mat4(1.0), glm::radians((float)time), glm::vec3(0.0f,1.0f,0.0f));
+
+  // stationary
   modelview.top() = modelview.top() *
-      glm::lookAt(glm::vec3(0.0f,50.0f,80.0f),
+      glm::lookAt(glm::vec3(0.0f,50.0f,100.0f),
                   glm::vec3(0.0f,50.0f,0.0f),
-                  glm::vec3(0.0f,1.0f,0.0f)) *
-      glm::rotate(glm::mat4(1.0), glm::radians((float)time), glm::vec3(0.0f,1.0f,0.0f));
+                  glm::vec3(0.0f,1.0f,0.0f));
 
   time += 1;
   time = time % 360;

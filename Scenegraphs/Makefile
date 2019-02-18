@@ -16,8 +16,7 @@ DEFINES       = -DQT_QML_DEBUG -DQT_WIDGETS_LIB -DQT_GUI_LIB -DQT_XML_LIB -DQT_C
 CFLAGS        = -pipe -g $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
 CXXFLAGS      = -pipe -stdlib=libc++ -g -std=gnu++11 $(EXPORT_ARCH_ARGS) -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wall -W -fPIC $(DEFINES)
 INCPATH       = -I. -I../headers -I/Applications/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.12.0/clang_64/lib/QtXml.framework/Headers -I/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I. -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/OpenGL.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/System/Library/Frameworks/AGL.framework/Headers -I/Applications/Qt/5.12.0/clang_64/mkspecs/macx-clang -F/Applications/Qt/5.12.0/clang_64/lib
-QMAKE         = /Applications/Qt/5.12.0/clang_64/bin/qmake
-DEL_FILE      = rm -f
+QMAKE         = /Applications/Qt/5.12.0/clang_64/bin/qmakeDEL_FILE      = rm -f
 CHK_DIR_EXISTS= test -d
 MKDIR         = mkdir -p
 COPY          = cp -f
@@ -38,7 +37,7 @@ DISTNAME      = Scenegraphs1.0.0
 DISTDIR = /Users/louyang/git/comgraphics/Scenegraphs/.tmp/Scenegraphs1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wl,-rpath,@executable_path/Frameworks -Wl,-rpath,/Applications/Qt/5.12.0/clang_64/lib
-LIBS          = $(SUBLIBS) -F/Applications/Qt/5.12.0/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtXml -framework OpenGL -framework AGL   
+LIBS          = $(SUBLIBS) -F/Applications/Qt/5.12.0/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtXml -framework OpenGL -framework AGL
 AR            = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ar cq
 RANLIB        = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/ranlib -s
 SED           = sed
@@ -244,7 +243,7 @@ DIST          = /Applications/Qt/5.12.0/clang_64/mkspecs/features/spec_pre.prf \
 		OpenGLWindow.cpp \
 		View.cpp
 QMAKE_TARGET  = Scenegraphs
-DESTDIR       = 
+DESTDIR       =
 TARGET        = Scenegraphs
 
 ####### Custom Variables
@@ -260,7 +259,7 @@ include /Applications/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.mk
 first: all
 ####### Build rules
 
-Scenegraphs:  $(OBJECTS)  
+Scenegraphs:  $(OBJECTS)
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: Scenegraphs.pro /Applications/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf /Applications/Qt/5.12.0/clang_64/mkspecs/features/spec_pre.prf \
@@ -635,13 +634,13 @@ distdir: FORCE
 	$(COPY_FILE) --parents main.cpp OpenGLWindow.cpp View.cpp $(DISTDIR)/
 
 
-clean: compiler_clean 
+clean: compiler_clean
 	-$(DEL_FILE) $(OBJECTS)
 	-$(DEL_FILE) *~ core *.core
 
 
-distclean: clean 
-	-$(DEL_FILE) $(TARGET) 
+distclean: clean
+	-$(DEL_FILE) $(TARGET)
 	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
@@ -679,87 +678,6 @@ moc_OpenGLWindow.cpp: /Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Head
 		/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QTime \
 		/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		View.h \
-		../headers/glm/glm.hpp \
-		../headers/glm/detail/_fixes.hpp \
-		../headers/glm/fwd.hpp \
-		../headers/glm/detail/type_int.hpp \
-		../headers/glm/detail/setup.hpp \
-		../headers/glm/detail/type_float.hpp \
-		../headers/glm/detail/type_vec.hpp \
-		../headers/glm/detail/precision.hpp \
-		../headers/glm/detail/type_mat.hpp \
-		../headers/glm/vec2.hpp \
-		../headers/glm/detail/type_vec2.hpp \
-		../headers/glm/detail/_swizzle.hpp \
-		../headers/glm/detail/_swizzle_func.hpp \
-		../headers/glm/detail/type_vec2.inl \
-		../headers/glm/vec3.hpp \
-		../headers/glm/detail/type_vec3.hpp \
-		../headers/glm/detail/type_vec3.inl \
-		../headers/glm/vec4.hpp \
-		../headers/glm/detail/type_vec4.hpp \
-		../headers/glm/detail/type_vec4.inl \
-		../headers/glm/detail/type_vec4_sse2.inl \
-		../headers/glm/detail/type_vec4_avx.inl \
-		../headers/glm/detail/type_vec4_avx2.inl \
-		../headers/glm/mat2x2.hpp \
-		../headers/glm/detail/type_mat2x2.hpp \
-		../headers/glm/detail/type_mat2x2.inl \
-		../headers/glm/mat2x3.hpp \
-		../headers/glm/detail/type_mat2x3.hpp \
-		../headers/glm/detail/type_mat2x3.inl \
-		../headers/glm/mat2x4.hpp \
-		../headers/glm/detail/type_mat2x4.hpp \
-		../headers/glm/detail/type_mat2x4.inl \
-		../headers/glm/mat3x2.hpp \
-		../headers/glm/detail/type_mat3x2.hpp \
-		../headers/glm/detail/type_mat3x2.inl \
-		../headers/glm/mat3x3.hpp \
-		../headers/glm/detail/type_mat3x3.hpp \
-		../headers/glm/detail/type_mat3x3.inl \
-		../headers/glm/mat3x4.hpp \
-		../headers/glm/detail/type_mat3x4.hpp \
-		../headers/glm/detail/type_mat3x4.inl \
-		../headers/glm/mat4x2.hpp \
-		../headers/glm/detail/type_mat4x2.hpp \
-		../headers/glm/detail/type_mat4x2.inl \
-		../headers/glm/mat4x3.hpp \
-		../headers/glm/detail/type_mat4x3.hpp \
-		../headers/glm/detail/type_mat4x3.inl \
-		../headers/glm/mat4x4.hpp \
-		../headers/glm/detail/type_mat4x4.hpp \
-		../headers/glm/detail/type_mat4x4.inl \
-		../headers/glm/trigonometric.hpp \
-		../headers/glm/detail/func_trigonometric.hpp \
-		../headers/glm/detail/func_trigonometric.inl \
-		../headers/glm/detail/_vectorize.hpp \
-		../headers/glm/detail/type_vec1.hpp \
-		../headers/glm/detail/type_vec1.inl \
-		../headers/glm/exponential.hpp \
-		../headers/glm/detail/func_exponential.hpp \
-		../headers/glm/detail/func_exponential.inl \
-		../headers/glm/detail/func_vector_relational.hpp \
-		../headers/glm/detail/func_vector_relational.inl \
-		../headers/glm/common.hpp \
-		../headers/glm/detail/func_common.hpp \
-		../headers/glm/detail/func_common.inl \
-		../headers/glm/packing.hpp \
-		../headers/glm/detail/func_packing.hpp \
-		../headers/glm/detail/func_packing.inl \
-		../headers/glm/detail/type_half.hpp \
-		../headers/glm/detail/type_half.inl \
-		../headers/glm/geometric.hpp \
-		../headers/glm/detail/func_geometric.hpp \
-		../headers/glm/detail/func_geometric.inl \
-		../headers/glm/matrix.hpp \
-		../headers/glm/detail/func_matrix.hpp \
-		../headers/glm/detail/func_matrix.inl \
-		../headers/glm/vector_relational.hpp \
-		../headers/glm/integer.hpp \
-		../headers/glm/detail/func_integer.hpp \
-		../headers/glm/detail/func_integer.inl \
-		../headers/ShaderProgram.h \
-		../headers/ShaderLocationsVault.h \
 		sgraph/Scenegraph.h \
 		sgraph/GLScenegraphRenderer.h \
 		sgraph/INode.h \
@@ -797,7 +715,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean 
+compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 
 ####### Compile
 
@@ -816,87 +734,6 @@ main.o: main.cpp /Applications/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Header
 		/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QTime \
 		/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		View.h \
-		../headers/glm/glm.hpp \
-		../headers/glm/detail/_fixes.hpp \
-		../headers/glm/fwd.hpp \
-		../headers/glm/detail/type_int.hpp \
-		../headers/glm/detail/setup.hpp \
-		../headers/glm/detail/type_float.hpp \
-		../headers/glm/detail/type_vec.hpp \
-		../headers/glm/detail/precision.hpp \
-		../headers/glm/detail/type_mat.hpp \
-		../headers/glm/vec2.hpp \
-		../headers/glm/detail/type_vec2.hpp \
-		../headers/glm/detail/_swizzle.hpp \
-		../headers/glm/detail/_swizzle_func.hpp \
-		../headers/glm/detail/type_vec2.inl \
-		../headers/glm/vec3.hpp \
-		../headers/glm/detail/type_vec3.hpp \
-		../headers/glm/detail/type_vec3.inl \
-		../headers/glm/vec4.hpp \
-		../headers/glm/detail/type_vec4.hpp \
-		../headers/glm/detail/type_vec4.inl \
-		../headers/glm/detail/type_vec4_sse2.inl \
-		../headers/glm/detail/type_vec4_avx.inl \
-		../headers/glm/detail/type_vec4_avx2.inl \
-		../headers/glm/mat2x2.hpp \
-		../headers/glm/detail/type_mat2x2.hpp \
-		../headers/glm/detail/type_mat2x2.inl \
-		../headers/glm/mat2x3.hpp \
-		../headers/glm/detail/type_mat2x3.hpp \
-		../headers/glm/detail/type_mat2x3.inl \
-		../headers/glm/mat2x4.hpp \
-		../headers/glm/detail/type_mat2x4.hpp \
-		../headers/glm/detail/type_mat2x4.inl \
-		../headers/glm/mat3x2.hpp \
-		../headers/glm/detail/type_mat3x2.hpp \
-		../headers/glm/detail/type_mat3x2.inl \
-		../headers/glm/mat3x3.hpp \
-		../headers/glm/detail/type_mat3x3.hpp \
-		../headers/glm/detail/type_mat3x3.inl \
-		../headers/glm/mat3x4.hpp \
-		../headers/glm/detail/type_mat3x4.hpp \
-		../headers/glm/detail/type_mat3x4.inl \
-		../headers/glm/mat4x2.hpp \
-		../headers/glm/detail/type_mat4x2.hpp \
-		../headers/glm/detail/type_mat4x2.inl \
-		../headers/glm/mat4x3.hpp \
-		../headers/glm/detail/type_mat4x3.hpp \
-		../headers/glm/detail/type_mat4x3.inl \
-		../headers/glm/mat4x4.hpp \
-		../headers/glm/detail/type_mat4x4.hpp \
-		../headers/glm/detail/type_mat4x4.inl \
-		../headers/glm/trigonometric.hpp \
-		../headers/glm/detail/func_trigonometric.hpp \
-		../headers/glm/detail/func_trigonometric.inl \
-		../headers/glm/detail/_vectorize.hpp \
-		../headers/glm/detail/type_vec1.hpp \
-		../headers/glm/detail/type_vec1.inl \
-		../headers/glm/exponential.hpp \
-		../headers/glm/detail/func_exponential.hpp \
-		../headers/glm/detail/func_exponential.inl \
-		../headers/glm/detail/func_vector_relational.hpp \
-		../headers/glm/detail/func_vector_relational.inl \
-		../headers/glm/common.hpp \
-		../headers/glm/detail/func_common.hpp \
-		../headers/glm/detail/func_common.inl \
-		../headers/glm/packing.hpp \
-		../headers/glm/detail/func_packing.hpp \
-		../headers/glm/detail/func_packing.inl \
-		../headers/glm/detail/type_half.hpp \
-		../headers/glm/detail/type_half.inl \
-		../headers/glm/geometric.hpp \
-		../headers/glm/detail/func_geometric.hpp \
-		../headers/glm/detail/func_geometric.inl \
-		../headers/glm/matrix.hpp \
-		../headers/glm/detail/func_matrix.hpp \
-		../headers/glm/detail/func_matrix.inl \
-		../headers/glm/vector_relational.hpp \
-		../headers/glm/integer.hpp \
-		../headers/glm/detail/func_integer.hpp \
-		../headers/glm/detail/func_integer.inl \
-		../headers/ShaderProgram.h \
-		../headers/ShaderLocationsVault.h \
 		sgraph/Scenegraph.h \
 		sgraph/GLScenegraphRenderer.h \
 		sgraph/INode.h \
@@ -930,87 +767,6 @@ OpenGLWindow.o: OpenGLWindow.cpp OpenGLWindow.h \
 		/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QTime \
 		/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
 		View.h \
-		../headers/glm/glm.hpp \
-		../headers/glm/detail/_fixes.hpp \
-		../headers/glm/fwd.hpp \
-		../headers/glm/detail/type_int.hpp \
-		../headers/glm/detail/setup.hpp \
-		../headers/glm/detail/type_float.hpp \
-		../headers/glm/detail/type_vec.hpp \
-		../headers/glm/detail/precision.hpp \
-		../headers/glm/detail/type_mat.hpp \
-		../headers/glm/vec2.hpp \
-		../headers/glm/detail/type_vec2.hpp \
-		../headers/glm/detail/_swizzle.hpp \
-		../headers/glm/detail/_swizzle_func.hpp \
-		../headers/glm/detail/type_vec2.inl \
-		../headers/glm/vec3.hpp \
-		../headers/glm/detail/type_vec3.hpp \
-		../headers/glm/detail/type_vec3.inl \
-		../headers/glm/vec4.hpp \
-		../headers/glm/detail/type_vec4.hpp \
-		../headers/glm/detail/type_vec4.inl \
-		../headers/glm/detail/type_vec4_sse2.inl \
-		../headers/glm/detail/type_vec4_avx.inl \
-		../headers/glm/detail/type_vec4_avx2.inl \
-		../headers/glm/mat2x2.hpp \
-		../headers/glm/detail/type_mat2x2.hpp \
-		../headers/glm/detail/type_mat2x2.inl \
-		../headers/glm/mat2x3.hpp \
-		../headers/glm/detail/type_mat2x3.hpp \
-		../headers/glm/detail/type_mat2x3.inl \
-		../headers/glm/mat2x4.hpp \
-		../headers/glm/detail/type_mat2x4.hpp \
-		../headers/glm/detail/type_mat2x4.inl \
-		../headers/glm/mat3x2.hpp \
-		../headers/glm/detail/type_mat3x2.hpp \
-		../headers/glm/detail/type_mat3x2.inl \
-		../headers/glm/mat3x3.hpp \
-		../headers/glm/detail/type_mat3x3.hpp \
-		../headers/glm/detail/type_mat3x3.inl \
-		../headers/glm/mat3x4.hpp \
-		../headers/glm/detail/type_mat3x4.hpp \
-		../headers/glm/detail/type_mat3x4.inl \
-		../headers/glm/mat4x2.hpp \
-		../headers/glm/detail/type_mat4x2.hpp \
-		../headers/glm/detail/type_mat4x2.inl \
-		../headers/glm/mat4x3.hpp \
-		../headers/glm/detail/type_mat4x3.hpp \
-		../headers/glm/detail/type_mat4x3.inl \
-		../headers/glm/mat4x4.hpp \
-		../headers/glm/detail/type_mat4x4.hpp \
-		../headers/glm/detail/type_mat4x4.inl \
-		../headers/glm/trigonometric.hpp \
-		../headers/glm/detail/func_trigonometric.hpp \
-		../headers/glm/detail/func_trigonometric.inl \
-		../headers/glm/detail/_vectorize.hpp \
-		../headers/glm/detail/type_vec1.hpp \
-		../headers/glm/detail/type_vec1.inl \
-		../headers/glm/exponential.hpp \
-		../headers/glm/detail/func_exponential.hpp \
-		../headers/glm/detail/func_exponential.inl \
-		../headers/glm/detail/func_vector_relational.hpp \
-		../headers/glm/detail/func_vector_relational.inl \
-		../headers/glm/common.hpp \
-		../headers/glm/detail/func_common.hpp \
-		../headers/glm/detail/func_common.inl \
-		../headers/glm/packing.hpp \
-		../headers/glm/detail/func_packing.hpp \
-		../headers/glm/detail/func_packing.inl \
-		../headers/glm/detail/type_half.hpp \
-		../headers/glm/detail/type_half.inl \
-		../headers/glm/geometric.hpp \
-		../headers/glm/detail/func_geometric.hpp \
-		../headers/glm/detail/func_geometric.inl \
-		../headers/glm/matrix.hpp \
-		../headers/glm/detail/func_matrix.hpp \
-		../headers/glm/detail/func_matrix.inl \
-		../headers/glm/vector_relational.hpp \
-		../headers/glm/integer.hpp \
-		../headers/glm/detail/func_integer.hpp \
-		../headers/glm/detail/func_integer.inl \
-		../headers/ShaderProgram.h \
-		../headers/ShaderLocationsVault.h \
 		sgraph/Scenegraph.h \
 		sgraph/GLScenegraphRenderer.h \
 		sgraph/INode.h \
@@ -1157,7 +913,7 @@ View.o: View.cpp View.h \
 		sgraph/GroupNode.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o View.o View.cpp
 
-moc_OpenGLWindow.o: moc_OpenGLWindow.cpp 
+moc_OpenGLWindow.o: moc_OpenGLWindow.cpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o moc_OpenGLWindow.o moc_OpenGLWindow.cpp
 
 ####### Install
@@ -1167,4 +923,3 @@ install:  FORCE
 uninstall:  FORCE
 
 FORCE:
-
