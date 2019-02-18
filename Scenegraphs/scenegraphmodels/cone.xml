@@ -11,26 +11,26 @@
 		<scale> 50 50 50 </scale>
 		</set>
 		<group>
-			<object instanceof="cone">
+			<object instanceof="box">
 				<material>
 				<color> 1 1 0 </color>
 				</material>
 			</object>			
 		</group>
 	</transform>
-<!--
+    
 	<transform>
 		<set>
 		<translate> 0 25 0 </translate>
 		<scale> 50 50 50 </scale>
 		</set>
 		<group>
-			<object instanceof="cone">
+			<object instanceof="box">
 				<material>
 				<color> 1 0 0 </color>
 				</material>
 			</object>			
 		</group>
-	</transform> -->
+	</transform>
 	</group>
 </scene>

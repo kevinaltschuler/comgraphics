@@ -57,8 +57,6 @@ public:
 private:
     //record the current window width and height
     int WINDOW_WIDTH,WINDOW_HEIGHT;
-
-    int time;
     //the projection matrix
     glm::mat4 proj;
     //the trackball transform

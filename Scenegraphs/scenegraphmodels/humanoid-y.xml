@@ -129,7 +129,8 @@
                                 <transform name="lefthand">
                                     <set>
                                         <translate>10 27 0</translate>
-                                        <rotate>135 0 0 1</rotate>
+                                        <rotate>180 0 0 1</rotate>
+
                                     </set>
                                     <transform>
                                         <set>
@@ -187,7 +188,7 @@
                                 <transform name="righthand">
                                     <set>
                                         <translate>-10 27 0</translate>
-                                        <rotate>-135 0 0 1</rotate>
+                                        <rotate>180 0 0 1</rotate>
                                     </set>
                                     <transform name="righthand">
                                         <set>

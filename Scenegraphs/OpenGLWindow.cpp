@@ -59,7 +59,7 @@ void OpenGLWindow::initializeGL()
         //assuming we cannot recover from this error, shut down the application
         exit(1);
     }
-    view.initScenegraph(*gl,string("scenegraphmodels/draft.xml"));
+    view.initScenegraph(*gl,string("scenegraphmodels/face-hierarchy.xml"));
 }
 
 void OpenGLWindow::paintGL()
@@ -123,19 +123,7 @@ void OpenGLWindow::mouseReleaseEvent(QMouseEvent *e)
     view.mouseReleased(e->x(),e->y());
 }
 
-void OpenGLWindow::keyPressEvent(QKeyEvent *e)
-{
-    if (e->key() == 'T'){
 
-        printf("TTTT------------\n");
-    }
-
-    if (e->key() == 'G'){
-
-        printf("GGGGGGGG------------\n");
-    }
-
-}
 
 /*
  * This function helps us to automatically start animating

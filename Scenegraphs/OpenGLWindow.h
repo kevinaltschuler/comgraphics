@@ -5,7 +5,6 @@
 #include <QtGui/QOpenGLWindow>
 #include <QCoreApplication>
 #include <QMouseEvent>
-#include <QKeyEvent>
 #include <OpenGLFunctions.h>
 #include <QOpenGLShaderProgram>
 #include <QTime>
@@ -56,13 +55,10 @@ protected:
                  */
   void mousePressEvent(QMouseEvent *);
 
-
   /*
                  * this function is called whenever a mouse button is released.
                  */
   void mouseReleaseEvent(QMouseEvent *);
-
-  void keyPressEvent(QKeyEvent *);
 
 
   /*

@@ -20,6 +20,7 @@
                                 <translate>5 0 0</translate>
                             </set>
                             <group name="leg">
+                                
                                 <transform name="shin">
                                     <set>
                                         <scale>1 20 1</scale>
@@ -30,10 +31,11 @@
                                         </material>
                                     </object>
                                 </transform>
+                                
                                 <transform>
-                                    <set>
-                                        <translate>0 21 0</translate>
-                                    </set>
+<!--                                    <set>-->
+<!--                                        <translate>0 21 0</translate>-->
+<!--                                    </set>-->
                                     <transform name="knee">
                                         <set>
                                             <scale>2 2 2</scale>
@@ -45,6 +47,8 @@
                                         </object>
                                     </transform>
                                 </transform>
+                                
+                                
                                 <transform>
                                     <set>
                                         <translate>0 22 0</translate>
@@ -129,7 +133,7 @@
                                 <transform name="lefthand">
                                     <set>
                                         <translate>10 27 0</translate>
-                                        <rotate>180 0 0 1</rotate>
+                                        <rotate>160 0 0 1</rotate>
                                     </set>
                                     <transform>
                                         <set>
@@ -168,12 +172,14 @@
                                             <transform>
                                                 <set>
                                                     <translate>0 -12 0</translate>
-                                                    <rotate>100 0 0 1</rotate>
+                                                    
                                                 </set>
                                                 <transform name="leftforearm">
                                                     <set>
+                                                        <rotate>80 0 0 1</rotate>
                                                         <translate>0 -10 0</translate>
                                                         <scale>1 10 1</scale>
+                                                        
                                                     </set>
                                                     <object instanceof="cylinder">
                                                         <material>
@@ -188,7 +194,7 @@
                                 <transform name="righthand">
                                     <set>
                                         <translate>-10 27 0</translate>
-                                        <rotate>-180 0 0 1</rotate>
+                                        <rotate>200 0 0 1</rotate>
                                     </set>
                                     <transform name="righthand">
                                         <set>
@@ -227,12 +233,13 @@
                                             <transform>
                                                 <set>
                                                     <translate>0 -12 0</translate>
-                                                    <rotate>-100 0 0 1</rotate>
+                                                    <rotate>-80 0 0 1</rotate>
                                                 </set>
                                                 <transform name="rightforearm">
                                                     <set>
                                                         <translate>0 -10 0</translate>
                                                         <scale>1 10 1</scale>
+                                                        
                                                     </set>
                                                     <object instanceof="cylinder">
                                                         <material>

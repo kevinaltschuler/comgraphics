@@ -1,8 +1,8 @@
 <scene>
-    <instance name="sphere" path="models/sphere"></instance>
-    <instance name="box" path="models/box"></instance>
-    <instance name="cylinder" path="models/cylinder"></instance>
-    <instance name="cone" path="models/cone"></instance>
+	<instance name="sphere" path="models/sphere.obj" />
+	<instance name="box" path="models/box.obj" />
+	<instance name="cylinder" path="models/cylinder.obj" />
+	<instance name="cone" path="models/cone.obj" />
 	
 	<group>
 	<transform>
