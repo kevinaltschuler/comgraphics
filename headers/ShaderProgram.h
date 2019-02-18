@@ -223,11 +223,7 @@ private:
             if (!file.is_open())
             {
                 stringstream str;
-<<<<<<< HEAD
                 str << "Shader " << shaders[i].filename << "not found or could not be opened!" << endl;
-=======
-                str << "Shader " << shaders[i].filename << " not found or could not be opened!" << endl;
->>>>>>> 403040031fe7e8185248c373a37a7c4858d93d47
                 throw runtime_error(str.str());
             }
 

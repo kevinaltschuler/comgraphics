@@ -123,7 +123,7 @@ void OpenGLWindow::mouseReleaseEvent(QMouseEvent *e)
     view.mouseReleased(e->x(),e->y());
 }
 
-void keyPressEvent(QKeyEvent *e)
+void OpenGLWindow::keyPressEvent(QKeyEvent *e)
 {
     if (e->key() == 'T'){
 

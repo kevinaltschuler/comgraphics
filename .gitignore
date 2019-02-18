@@ -30,3 +30,7 @@
 *.exe
 *.out
 *.app
+
+
+Scenegraphs/Makefile
+Scenegraphs/Scenegraphs.pro
