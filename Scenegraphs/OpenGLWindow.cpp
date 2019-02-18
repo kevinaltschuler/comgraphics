@@ -123,7 +123,19 @@ void OpenGLWindow::mouseReleaseEvent(QMouseEvent *e)
     view.mouseReleased(e->x(),e->y());
 }
 
+void keyPressEvent(QKeyEvent *e)
+{
+    if (e->key() == 'T'){
 
+        printf("TTTT------------\n");
+    }
+
+    if (e->key() == 'G'){
+
+        printf("GGGGGGGG------------\n");
+    }
+
+}
 
 /*
  * This function helps us to automatically start animating
