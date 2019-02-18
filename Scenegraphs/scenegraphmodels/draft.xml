@@ -1,0 +1,48 @@
+<scene>
+    <transform>
+        <set>
+            <rotate> 0 0 0 1 </rotate>
+            <translate>0 -30 0</translate>
+        </set>
+        <group>
+            <transform>
+                <set>
+                    <translate>0 5 17.5</translate>
+                </set>
+                <group name="face1" from="scenegraphmodels/face1.xml">
+                </group>
+            </transform>
+            <transform>
+                <set>
+                    <translate>0 0 0</translate>
+                </set>
+                <group name="face24" from="scenegraphmodels/face24.xml">
+                </group>
+            </transform>
+            <transform>
+                <set>
+                    <translate>0 0 -17.5</translate>
+                </set>
+                <group name="face3" from="scenegraphmodels/face3.xml">
+                </group>
+            </transform>
+            
+            <transform>
+                <set>
+                    <translate>0 0 0</translate>
+                </set>
+                <group name="floor-roof" from="scenegraphmodels/floors.xml">
+                </group>
+            </transform>
+            
+            <transform>
+                <set>
+                    <translate>0 -2.5 0</translate>
+                </set>
+                <group name="base" from="scenegraphmodels/base.xml">
+                </group>
+            </transform>
+            
+        </group>
+    </transform>
+</scene>
