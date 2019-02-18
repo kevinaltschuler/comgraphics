@@ -1,0 +1,64 @@
+<scene>
+	<instance name="sphere" path="models/sphere.obj" />
+	<instance name="box" path="models/box.obj" />
+	<instance name="cylinder" path="models/cylinder.obj" />
+	<instance name="cone" path="models/cone.obj" />
+	
+	<group>
+	<transform>
+		<set>
+		<translate> 0 17.5 0 </translate>
+		<scale> 40 5 30 </scale>
+		</set>
+		<group>
+			<object instanceof="box">
+				<material>
+				<color> 1 1 0 </color>
+				</material>
+			</object>			
+		</group>
+	</transform>
+    
+	<transform>
+		<set>
+		<translate> 0 42.5 0 </translate>
+		<scale> 40 5 30 </scale>
+		</set>
+		<group>
+			<object instanceof="box">
+				<material>
+				<color> 1 1 0 </color>
+				</material>
+			</object>			
+		</group>
+	</transform>
+    
+    <transform>
+        <set>
+            <translate> 0 67.5 0 </translate>
+            <scale> 40 5 30 </scale>
+        </set>
+        <group>
+            <object instanceof="box">
+                <material>
+                    <color> 1 1 0 </color>
+                </material>
+            </object>
+        </group>
+    </transform>
+    
+    <transform>
+        <set>
+            <translate> 0 97.5 0 </translate>
+            <scale> 40 5 30 </scale>
+        </set>
+        <group>
+            <object instanceof="box">
+                <material>
+                    <color> 1 0 0 </color>
+                </material>
+            </object>
+        </group>
+    </transform>
+	</group>
+</scene>
