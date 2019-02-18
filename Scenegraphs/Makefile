@@ -35,7 +35,7 @@ MOVE          = mv -f
 TAR           = tar -cf
 COMPRESS      = gzip -9f
 DISTNAME      = Scenegraphs1.0.0
-DISTDIR = /Users/louyang/Desktop/CG/project/Scenegraphs/.tmp/Scenegraphs1.0.0
+DISTDIR = /Users/louyang/git/comgraphics/Scenegraphs/.tmp/Scenegraphs1.0.0
 LINK          = /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang++
 LFLAGS        = -stdlib=libc++ -headerpad_max_install_names $(EXPORT_ARCH_ARGS) -Wl,-syslibroot,/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk -mmacosx-version-min=10.12 -Wl,-rpath,@executable_path/Frameworks -Wl,-rpath,/Applications/Qt/5.12.0/clang_64/lib
 LIBS          = $(SUBLIBS) -F/Applications/Qt/5.12.0/clang_64/lib -framework QtWidgets -framework QtGui -framework QtCore -framework DiskArbitration -framework IOKit -framework QtXml -framework OpenGL -framework AGL   
@@ -200,7 +200,6 @@ DIST          = /Applications/Qt/5.12.0/clang_64/mkspecs/features/spec_pre.prf \
 		/Applications/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf \
 		/Applications/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Applications/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/Applications/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Applications/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf \
 		/Applications/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf \
@@ -406,7 +405,6 @@ Makefile: Scenegraphs.pro /Applications/Qt/5.12.0/clang_64/mkspecs/macx-clang/qm
 		/Applications/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf \
 		/Applications/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf \
 		/Applications/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf \
-		.qmake.stash \
 		/Applications/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf \
 		/Applications/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf \
 		/Applications/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf \
@@ -583,7 +581,6 @@ Makefile: Scenegraphs.pro /Applications/Qt/5.12.0/clang_64/mkspecs/macx-clang/qm
 /Applications/Qt/5.12.0/clang_64/mkspecs/features/qt_config.prf:
 /Applications/Qt/5.12.0/clang_64/mkspecs/macx-clang/qmake.conf:
 /Applications/Qt/5.12.0/clang_64/mkspecs/features/spec_post.prf:
-.qmake.stash:
 /Applications/Qt/5.12.0/clang_64/mkspecs/features/exclusive_builds.prf:
 /Applications/Qt/5.12.0/clang_64/mkspecs/features/mac/sdk.prf:
 /Applications/Qt/5.12.0/clang_64/mkspecs/features/toolchain.prf:
@@ -642,7 +639,6 @@ clean: compiler_clean
 
 distclean: clean 
 	-$(DEL_FILE) $(TARGET) 
-	-$(DEL_FILE) .qmake.stash
 	-$(DEL_FILE) Makefile
 
 
@@ -760,28 +756,12 @@ moc_OpenGLWindow.cpp: /Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Head
 		../headers/glm/detail/func_integer.inl \
 		../headers/ShaderProgram.h \
 		../headers/ShaderLocationsVault.h \
-		sgraph/Scenegraph.h \
-		sgraph/GLScenegraphRenderer.h \
-		sgraph/INode.h \
-		../headers/Light.h \
-		../headers/Material.h \
-		../headers/glm/gtc/type_ptr.hpp \
-		../headers/glm/gtc/quaternion.hpp \
-		../headers/glm/gtc/constants.hpp \
-		../headers/glm/gtc/constants.inl \
-		../headers/glm/gtc/quaternion.inl \
-		../headers/glm/gtc/type_ptr.inl \
-		../headers/TextureImage.h \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QOpenGLTexture \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qopengltexture.h \
 		../headers/ObjectInstance.h \
 		../headers/PolygonMesh.h \
-		../headers/IVertexData.h \
-		VertexAttrib.h \
 		OpenGLWindow.h \
 		moc_predefs.h \
 		/Applications/Qt/5.12.0/clang_64/bin/moc
-	/Applications/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include /Users/louyang/Desktop/CG/project/Scenegraphs/moc_predefs.h -I/Applications/Qt/5.12.0/clang_64/mkspecs/macx-clang -I/Users/louyang/Desktop/CG/project/Scenegraphs -I/Users/louyang/Desktop/CG/project/headers -I/Applications/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.12.0/clang_64/lib/QtXml.framework/Headers -I/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include -IC:/Qt/Tools/mingw530_32/lib/gcc/i686-w64-mingw32/5.3.0/include-fixed -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++ -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/i686-w64-mingw32 -IC:/Qt/Tools/mingw530_32/i686-w64-mingw32/include/c++/backward -F/Applications/Qt/5.12.0/clang_64/lib OpenGLWindow.h -o moc_OpenGLWindow.cpp
+	/Applications/Qt/5.12.0/clang_64/bin/moc $(DEFINES) --include /Users/louyang/git/comgraphics/Scenegraphs/moc_predefs.h -I/Applications/Qt/5.12.0/clang_64/mkspecs/macx-clang -I/Users/louyang/git/comgraphics/Scenegraphs -I/Users/louyang/git/comgraphics/headers -I/Applications/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers -I/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers -I/Applications/Qt/5.12.0/clang_64/lib/QtXml.framework/Headers -I/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include/c++/v1 -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/clang/10.0.0/include -I/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include -I/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.14.sdk/usr/include -F/Applications/Qt/5.12.0/clang_64/lib OpenGLWindow.h -o moc_OpenGLWindow.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -801,120 +781,7 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 
 ####### Compile
 
-main.o: main.cpp /Applications/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QApplication \
-		/Applications/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/qapplication.h \
-		openglwindow.h \
-		/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QCoreApplication \
-		/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qcoreapplication.h \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QMouseEvent \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
-		../headers/OpenGLFunctions.h \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QOpenGLFunctions_3_3_Core \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qopenglfunctions_3_3_core.h \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QOpenGLShaderProgram \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qopenglshaderprogram.h \
-		/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/QTime \
-		/Applications/Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/qdatetime.h \
-		View.h \
-		../headers/glm/glm.hpp \
-		../headers/glm/detail/_fixes.hpp \
-		../headers/glm/fwd.hpp \
-		../headers/glm/detail/type_int.hpp \
-		../headers/glm/detail/setup.hpp \
-		../headers/glm/detail/type_float.hpp \
-		../headers/glm/detail/type_vec.hpp \
-		../headers/glm/detail/precision.hpp \
-		../headers/glm/detail/type_mat.hpp \
-		../headers/glm/vec2.hpp \
-		../headers/glm/detail/type_vec2.hpp \
-		../headers/glm/detail/_swizzle.hpp \
-		../headers/glm/detail/_swizzle_func.hpp \
-		../headers/glm/detail/type_vec2.inl \
-		../headers/glm/vec3.hpp \
-		../headers/glm/detail/type_vec3.hpp \
-		../headers/glm/detail/type_vec3.inl \
-		../headers/glm/vec4.hpp \
-		../headers/glm/detail/type_vec4.hpp \
-		../headers/glm/detail/type_vec4.inl \
-		../headers/glm/detail/type_vec4_sse2.inl \
-		../headers/glm/detail/type_vec4_avx.inl \
-		../headers/glm/detail/type_vec4_avx2.inl \
-		../headers/glm/mat2x2.hpp \
-		../headers/glm/detail/type_mat2x2.hpp \
-		../headers/glm/detail/type_mat2x2.inl \
-		../headers/glm/mat2x3.hpp \
-		../headers/glm/detail/type_mat2x3.hpp \
-		../headers/glm/detail/type_mat2x3.inl \
-		../headers/glm/mat2x4.hpp \
-		../headers/glm/detail/type_mat2x4.hpp \
-		../headers/glm/detail/type_mat2x4.inl \
-		../headers/glm/mat3x2.hpp \
-		../headers/glm/detail/type_mat3x2.hpp \
-		../headers/glm/detail/type_mat3x2.inl \
-		../headers/glm/mat3x3.hpp \
-		../headers/glm/detail/type_mat3x3.hpp \
-		../headers/glm/detail/type_mat3x3.inl \
-		../headers/glm/mat3x4.hpp \
-		../headers/glm/detail/type_mat3x4.hpp \
-		../headers/glm/detail/type_mat3x4.inl \
-		../headers/glm/mat4x2.hpp \
-		../headers/glm/detail/type_mat4x2.hpp \
-		../headers/glm/detail/type_mat4x2.inl \
-		../headers/glm/mat4x3.hpp \
-		../headers/glm/detail/type_mat4x3.hpp \
-		../headers/glm/detail/type_mat4x3.inl \
-		../headers/glm/mat4x4.hpp \
-		../headers/glm/detail/type_mat4x4.hpp \
-		../headers/glm/detail/type_mat4x4.inl \
-		../headers/glm/trigonometric.hpp \
-		../headers/glm/detail/func_trigonometric.hpp \
-		../headers/glm/detail/func_trigonometric.inl \
-		../headers/glm/detail/_vectorize.hpp \
-		../headers/glm/detail/type_vec1.hpp \
-		../headers/glm/detail/type_vec1.inl \
-		../headers/glm/exponential.hpp \
-		../headers/glm/detail/func_exponential.hpp \
-		../headers/glm/detail/func_exponential.inl \
-		../headers/glm/detail/func_vector_relational.hpp \
-		../headers/glm/detail/func_vector_relational.inl \
-		../headers/glm/common.hpp \
-		../headers/glm/detail/func_common.hpp \
-		../headers/glm/detail/func_common.inl \
-		../headers/glm/packing.hpp \
-		../headers/glm/detail/func_packing.hpp \
-		../headers/glm/detail/func_packing.inl \
-		../headers/glm/detail/type_half.hpp \
-		../headers/glm/detail/type_half.inl \
-		../headers/glm/geometric.hpp \
-		../headers/glm/detail/func_geometric.hpp \
-		../headers/glm/detail/func_geometric.inl \
-		../headers/glm/matrix.hpp \
-		../headers/glm/detail/func_matrix.hpp \
-		../headers/glm/detail/func_matrix.inl \
-		../headers/glm/vector_relational.hpp \
-		../headers/glm/integer.hpp \
-		../headers/glm/detail/func_integer.hpp \
-		../headers/glm/detail/func_integer.inl \
-		../headers/ShaderProgram.h \
-		../headers/ShaderLocationsVault.h \
-		sgraph/Scenegraph.h \
-		sgraph/GLScenegraphRenderer.h \
-		sgraph/INode.h \
-		../headers/Light.h \
-		../headers/Material.h \
-		../headers/glm/gtc/type_ptr.hpp \
-		../headers/glm/gtc/quaternion.hpp \
-		../headers/glm/gtc/constants.hpp \
-		../headers/glm/gtc/constants.inl \
-		../headers/glm/gtc/quaternion.inl \
-		../headers/glm/gtc/type_ptr.inl \
-		../headers/TextureImage.h \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QOpenGLTexture \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qopengltexture.h \
-		../headers/ObjectInstance.h \
-		../headers/PolygonMesh.h \
-		../headers/IVertexData.h \
-		VertexAttrib.h
+main.o: main.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 OpenGLWindow.o: OpenGLWindow.cpp OpenGLWindow.h \
@@ -1011,24 +878,8 @@ OpenGLWindow.o: OpenGLWindow.cpp OpenGLWindow.h \
 		../headers/glm/detail/func_integer.inl \
 		../headers/ShaderProgram.h \
 		../headers/ShaderLocationsVault.h \
-		sgraph/Scenegraph.h \
-		sgraph/GLScenegraphRenderer.h \
-		sgraph/INode.h \
-		../headers/Light.h \
-		../headers/Material.h \
-		../headers/glm/gtc/type_ptr.hpp \
-		../headers/glm/gtc/quaternion.hpp \
-		../headers/glm/gtc/constants.hpp \
-		../headers/glm/gtc/constants.inl \
-		../headers/glm/gtc/quaternion.inl \
-		../headers/glm/gtc/type_ptr.inl \
-		../headers/TextureImage.h \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QOpenGLTexture \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qopengltexture.h \
 		../headers/ObjectInstance.h \
 		../headers/PolygonMesh.h \
-		../headers/IVertexData.h \
-		VertexAttrib.h \
 		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QScreen \
 		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qscreen.h \
 		/Applications/Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QMessageBox \
@@ -1126,35 +977,16 @@ View.o: View.cpp View.h \
 		../headers/glm/detail/func_integer.inl \
 		../headers/ShaderProgram.h \
 		../headers/ShaderLocationsVault.h \
-		sgraph/Scenegraph.h \
-		sgraph/GLScenegraphRenderer.h \
-		sgraph/INode.h \
-		../headers/Light.h \
-		../headers/Material.h \
+		../headers/ObjectInstance.h \
+		../headers/PolygonMesh.h \
 		../headers/glm/gtc/type_ptr.hpp \
 		../headers/glm/gtc/quaternion.hpp \
 		../headers/glm/gtc/constants.hpp \
 		../headers/glm/gtc/constants.inl \
 		../headers/glm/gtc/quaternion.inl \
 		../headers/glm/gtc/type_ptr.inl \
-		../headers/TextureImage.h \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QOpenGLTexture \
-		/Applications/Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qopengltexture.h \
-		../headers/ObjectInstance.h \
-		../headers/PolygonMesh.h \
-		../headers/IVertexData.h \
-		VertexAttrib.h \
-		sgraph/ScenegraphInfo.h \
-		sgraph/SceneXMLReader.h \
 		../headers/glm/gtc/matrix_transform.hpp \
-		../headers/glm/gtc/matrix_transform.inl \
-		/Applications/Qt/5.12.0/clang_64/lib/QtXml.framework/Headers/QXmlDefaultHandler \
-		/Applications/Qt/5.12.0/clang_64/lib/QtXml.framework/Headers/qxml.h \
-		../headers/ObjImporter.h \
-		sgraph/TransformNode.h \
-		sgraph/AbstractNode.h \
-		sgraph/LeafNode.h \
-		sgraph/GroupNode.h
+		../headers/glm/gtc/matrix_transform.inl
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o View.o View.cpp
 
 moc_OpenGLWindow.o: moc_OpenGLWindow.cpp 

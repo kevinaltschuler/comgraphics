@@ -20,7 +20,7 @@ class OpenGLWindow : public QOpenGLWindow
 {
   Q_OBJECT
 public:
-  explicit OpenGLWindow(QWindow *parent=0);
+  explicit OpenGLWindow(QWindow *parent=0, int argc=0, char* argv[]=NULL);
   virtual ~OpenGLWindow();
   void setAnimating(bool enabled);
 

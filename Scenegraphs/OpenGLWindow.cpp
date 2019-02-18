@@ -8,7 +8,7 @@
 
 
 
-OpenGLWindow::OpenGLWindow(QWindow *parent)    
+OpenGLWindow::OpenGLWindow(QWindow *parent, int argc, char* argv[])
     :QOpenGLWindow(UpdateBehavior::NoPartialUpdate,parent)
 {
     //changes the title shown on the window
@@ -59,7 +59,7 @@ void OpenGLWindow::initializeGL()
         //assuming we cannot recover from this error, shut down the application
         exit(1);
     }
-    view.initScenegraph(*gl,string("scenegraphmodels/face-hierarchy.xml"));
+    view.initScenegraph(*gl,string("scenegraphmodels/draft.xml"));
 }
 
 void OpenGLWindow::paintGL()

@@ -7,30 +7,30 @@
 	<group>
 	<transform>
 		<set>
-		<translate> 0 -25 0 </translate>
-		<scale> 50 50 50 </scale>
+		<translate> -22.5 50 0 </translate>
+		<scale> 5 100 40 </scale>
 		</set>
 		<group>
-			<object instanceof="cone">
-				<material>
-				<color> 1 1 0 </color>
-				</material>
-			</object>			
-		</group>
-	</transform>
-<!--
-	<transform>
-		<set>
-		<translate> 0 25 0 </translate>
-		<scale> 50 50 50 </scale>
-		</set>
-		<group>
-			<object instanceof="cone">
+			<object instanceof="box">
 				<material>
 				<color> 1 0 0 </color>
 				</material>
 			</object>			
 		</group>
-	</transform> -->
+	</transform>
+    
+	<transform>
+		<set>
+		<translate> 22.5 50 0 </translate>
+		<scale> 5 100 40 </scale>
+		</set>
+		<group>
+			<object instanceof="box">
+				<material>
+				<color> 1 0 0 </color>
+				</material>
+			</object>			
+		</group>
+	</transform>
 	</group>
 </scene>
