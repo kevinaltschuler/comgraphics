@@ -84,9 +84,9 @@ void View::draw(util::OpenGLFunctions& gl)
   //trackball
   modelview.push(glm::mat4(1.0));
   modelview.top() = modelview.top() *
-      glm::lookAt(glm::vec3(0.0f,50.0f,80.0f),
-                  glm::vec3(0.0f,50.0f,0.0f),
-                  glm::vec3(0.0f,1.0f,0.0f)) *
+      glm::lookAt(eye,
+                  center,
+                  up) *
       trackballTransform;
 
   // auto rotate
@@ -169,6 +169,12 @@ void View::reshape(util::OpenGLFunctions& gl,int width,int height)
 
   proj = glm::perspective(glm::radians(120.0f),(float)width/height,0.1f,10000.0f);
 
+}
+
+void View::setCamera(glm::vec3 e, glm::vec3 c, glm::vec3 u) {
+    eye = e;
+    center = c;
+    up = u;
 }
 
 void View::dispose(util::OpenGLFunctions& gl)

@@ -5,6 +5,8 @@
 #include <QPainter>
 #include <QDebug>
 #include <QStaticText>
+#include <fstream>
+#include <iostream>
 
 
 
@@ -28,6 +30,43 @@ OpenGLWindow::OpenGLWindow(QWindow *parent, int argc, char* argv[])
     isDragged = false;
     frames = 0;
     setAnimating(true);
+
+    if (argv[1]) {
+        std::ifstream input(argv[1]);
+        int i = 0;
+        std::vector<std::string> lines;
+        for( std::string line; getline(input, line); i++)
+        {
+            lines.push_back(line);
+        }
+
+         xmlfilename = lines[0];
+
+         // sending eye pos
+         stringstream eye(lines[1]);
+         float e1; eye >> e1;
+         float e2; eye >> e2;
+         float e3; eye >> e3;
+         // sending cen pos
+         stringstream cen(lines[2]);
+         float c1; cen >> c1;
+         float c2; cen >> c2;
+         float c3; cen >> c3;
+         // sending up dir
+         stringstream up(lines[3]);
+         float u1; up >> u1;
+         float u2; up >> u2;
+         float u3; up >> u3;
+         view.setCamera(glm::vec3(e1, e2, e3), glm::vec3(c1, c2, c3), glm::vec3(u1, u2, u3));
+    } else {
+        xmlfilename = "";
+    }
+
+    // format for the config file is
+    // 0: path to xml file
+    // 1: eye pos, ex: 0.0 50.0 80.0
+    // 2: center pos, ex: 0.0 50.0 0.0
+    // 3: up dir, ex: 0.0 1.0 0.0
 
 }
 
@@ -58,7 +97,7 @@ void OpenGLWindow::initializeGL()
         //assuming we cannot recover from this error, shut down the application
         exit(1);
     }
-    view.initScenegraph(*gl,string("scenegraphmodels/draft.xml"));
+    view.initScenegraph(*gl, xmlfilename);
 }
 
 void OpenGLWindow::paintGL()

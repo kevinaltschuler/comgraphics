@@ -101,6 +101,7 @@ private:
   int frames;
   QTime timer;
   float framerate;
+  std::string xmlfilename;
 };
 
 

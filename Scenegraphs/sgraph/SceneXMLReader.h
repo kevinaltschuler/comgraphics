@@ -366,7 +366,7 @@ namespace sgraph
       for (int i=0;i<list.length();i++)
         {
           c=sscanf(list.at(i).toLatin1().constData(),"%f",&f);
-          printf("Read number: %f\n",f);
+          //printf("Read number: %f\n",f);
           data.push_back(f);
           if (c!=1)
             return true;
