@@ -109,9 +109,13 @@ private:
   int frames;
   QTime timer;
   float framerate;
+<<<<<<< HEAD
   int cameratype;
   bool isSwitched;
 
+=======
+  std::string xmlfilename;
+>>>>>>> 35429d2ba68d709c389358ee4655f0ec1065e238
 };
 
 

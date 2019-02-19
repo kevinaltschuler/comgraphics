@@ -55,6 +55,9 @@ public:
     void mouseDragged(int x,int y);
     void keySwitch(int camera);
 
+    //takes a string in my config format and sets the cameras initial position
+    void setCamera(glm::vec3 e, glm::vec3 c, glm::vec3 u);
+
 private:
     int time;
     //record the current window width and height
@@ -76,6 +79,10 @@ private:
     //the GLSL shader
     util::ShaderProgram program;
     sgraph::GLScenegraphRenderer renderer;
+
+    glm::vec3 eye;
+    glm::vec3 center;
+    glm::vec3 up;
 };
 
 #endif // VIEW_H
