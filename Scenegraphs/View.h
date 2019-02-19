@@ -80,6 +80,8 @@ private:
     util::ShaderProgram program;
     sgraph::GLScenegraphRenderer renderer;
 
+    bool isCameraRotating = false;
+
     glm::vec3 eye;
     glm::vec3 center;
     glm::vec3 up;

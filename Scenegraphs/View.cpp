@@ -17,6 +17,9 @@ View::View()
   proj = glm::mat4(1.0);
   scenegraph = NULL;
   time = 0;
+  eye = glm::vec3(0.0, 50.0, 80.0);
+  center = glm::vec3(0.0, 50.0, 0.0);
+  up = glm::vec3(0.0, 1.0, 0.0);
 }
 
 View::~View()
@@ -81,30 +84,18 @@ void View::draw(util::OpenGLFunctions& gl)
          * We use a modelview matrix to store the transformations to be applied to our triangle.
          * Right now this matrix is identity, which means "no transformations"
          */
-  //trackball
   modelview.push(glm::mat4(1.0));
   modelview.top() = modelview.top() *
       glm::lookAt(eye,
                   center,
-                  up) *
-      trackballTransform;
-
-
-  // auto rotate
-//  modelview.top() = modelview.top() *
-//      glm::lookAt(glm::vec3(0.0f,50.0f,80.0f),
-//                  glm::vec3(0.0f,50.0f,0.0f),
-//                  glm::vec3(0.0f,1.0f,0.0f)) *
-//      glm::rotate(glm::mat4(1.0), glm::radians((float)time), glm::vec3(0.0f,1.0f,0.0f));
-
-  // stationary
-//  modelview.top() = modelview.top() *
-//      glm::lookAt(glm::vec3(0.0f,50.0f,200.0f),
-//                  glm::vec3(0.0f,50.0f,0.0f),
-//                  glm::vec3(0.0f,1.0f,0.0f));
+                  up) * trackballTransform;
 
   time += 1;
   time = time % 360;
+
+  if (isCameraRotating) {
+      modelview.top() = modelview.top() * glm::rotate(glm::mat4(1.0), glm::radians((float)time), glm::vec3(0.0f,1.0f,0.0f));
+  }
 
 
   /*
@@ -126,25 +117,12 @@ void View::draw(util::OpenGLFunctions& gl)
 
 void View::keySwitch(int camera)
 {
-    if(camera = 1){
-
-        modelview.top() = modelview.top() *
-            glm::lookAt(glm::vec3(0.0f,50.0f,80.0f),
-                        glm::vec3(0.0f,50.0f,0.0f),
-                        glm::vec3(0.0f,1.0f,0.0f)) *
-            glm::rotate(glm::mat4(1.0), glm::radians((float)time), glm::vec3(0.0f,1.0f,0.0f));
-
+    //printf("%n\n", camera);
+    if(camera == 1){
+        isCameraRotating = true;
+    } else if(camera == 2){
+        isCameraRotating = false;
     }
-
-    if(camera = 2){
-          modelview.top() = modelview.top() *
-              glm::lookAt(glm::vec3(0.0f,50.0f,200.0f),
-                          glm::vec3(0.0f,50.0f,0.0f),
-                          glm::vec3(0.0f,1.0f,0.0f));
-
-    }
-
-
 }
 
 

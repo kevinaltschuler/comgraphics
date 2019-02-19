@@ -30,13 +30,8 @@ OpenGLWindow::OpenGLWindow(QWindow *parent, int argc, char* argv[])
 
     isDragged = false;
 
-    cameratype= 0;
-    isSwitched = false;
-
     frames = 0;
     setAnimating(true);
-    cameratype= 0;
-    isSwitched = false;
 
     if (argv[1]) {
         std::ifstream input(argv[1]);
@@ -66,7 +61,7 @@ OpenGLWindow::OpenGLWindow(QWindow *parent, int argc, char* argv[])
          float u3; up >> u3;
          view.setCamera(glm::vec3(e1, e2, e3), glm::vec3(c1, c2, c3), glm::vec3(u1, u2, u3));
     } else {
-        xmlfilename = "";
+        xmlfilename = "scenegraphmodels/face-hierarchy.xml";
     }
 
     // format for the config file is
@@ -169,29 +164,21 @@ void OpenGLWindow::mouseReleaseEvent(QMouseEvent *e)
 }
 
 
- void OpenGLWindow::keyPressedEvent(QKeyEvent *e)
+ void OpenGLWindow::keyPressEvent(QKeyEvent *e)
  {
      if(e->key() == Qt::Key_T){
-         printf("you have pressed T");
-         isSwitched = true;
-         cameratype = 1;
-         view.keySwitch(cameratype);
+         printf("you have pressed T \n");
+         view.keySwitch(1);
          this->update();
-
-         isSwitched = false;
      }
 
-     if(e->key() == Qt::Key_U){
-         isSwitched = true;
-         cameratype = 2;
-         view.keySwitch(cameratype);
+     if(e->key() == Qt::Key_G){
+         printf("you have pressed G \n");
+         view.keySwitch(2);
          this->update();
-         printf("you have pressed U");
-         isSwitched = false;
      }
 
  }
-
 
 
 
