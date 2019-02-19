@@ -31,7 +31,7 @@
 *.out
 *.app
 
-
+Scenegraphs/Scenegraphs
 Scenegraphs/Makefile*
 Scenegraphs/Scenegraphs.pro*
 Scenegraphs/Scenegraphs.pro.*
