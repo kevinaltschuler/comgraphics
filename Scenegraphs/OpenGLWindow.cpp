@@ -61,7 +61,7 @@ OpenGLWindow::OpenGLWindow(QWindow *parent, int argc, char* argv[])
          float u3; up >> u3;
          view.setCamera(glm::vec3(e1, e2, e3), glm::vec3(c1, c2, c3), glm::vec3(u1, u2, u3));
     } else {
-        xmlfilename = "scenegraphmodels/face-hierarchy.xml";
+        xmlfilename = "scenegraphmodels/draft.xml";
     }
 
     // format for the config file is
