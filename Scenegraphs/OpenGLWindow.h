@@ -5,6 +5,7 @@
 #include <QtGui/QOpenGLWindow>
 #include <QCoreApplication>
 #include <QMouseEvent>
+#include <QKeyEvent>
 #include <OpenGLFunctions.h>
 #include <QOpenGLShaderProgram>
 #include <QTime>
@@ -60,6 +61,13 @@ protected:
                  */
   void mouseReleaseEvent(QMouseEvent *);
 
+  /*
+                 * this function is called whenever a key is pressed.
+                 */
+
+  void keyPressedEvent(QKeyEvent *);
+
+
 
   /*
          * this class encapsulates all our program-specific rendering.
@@ -101,6 +109,9 @@ private:
   int frames;
   QTime timer;
   float framerate;
+  int cameratype;
+  bool isSwitched;
+
 };
 
 
