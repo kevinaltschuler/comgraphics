@@ -16,6 +16,7 @@ View::View()
   trackballTransform = glm::mat4(1.0);
   proj = glm::mat4(1.0);
   scenegraph = NULL;
+  cameraScenegraph = NULL;
   time = 0;
   eye = glm::vec3(0.0, 50.0, 80.0);
   center = glm::vec3(0.0, 50.0, 0.0);
@@ -45,6 +46,21 @@ void View::initScenegraph(util::OpenGLFunctions &gl, const string& filename) thr
   shaderVarsToVertexAttribs["vTexCoord"] = "texcoord";
   renderer.initShaderProgram(program,shaderVarsToVertexAttribs);
   scenegraph->setRenderer<VertexAttrib>(&renderer,sinfo.meshes);
+  program.disable(gl);
+
+}
+
+
+void View::initCameraObjScenegraph(util::OpenGLFunctions &gl, const string& filename) throw(runtime_error)
+{
+  if (cameraScenegraph!=NULL)
+    delete cameraScenegraph;
+
+  program.enable(gl);
+  sgraph::ScenegraphInfo<VertexAttrib> sinfo;
+  sinfo = sgraph::SceneXMLReader::importScenegraph<VertexAttrib>(filename);
+  cameraScenegraph = sinfo.scenegraph;
+  cameraScenegraph->setRenderer<VertexAttrib>(&renderer,sinfo.meshes);
   program.disable(gl);
 
 }
@@ -85,18 +101,22 @@ void View::draw(util::OpenGLFunctions& gl)
          * Right now this matrix is identity, which means "no transformations"
          */
   modelview.push(glm::mat4(1.0));
-  modelview.top() = modelview.top() *
-      glm::lookAt(eye,
-                  center,
-                  up) * trackballTransform;
+
+  // drone camera
+  if (!fixedCamera) {
+      modelview.top() = modelview.top() *
+          glm::lookAt(eye,
+                      center,
+                      up) * trackballTransform;
+  } else {
+      modelview.top() = modelview.top() *
+              glm::lookAt(glm::vec3(100.0, 50.0, 150.0),
+                    glm::vec3(0.0, 50.0, 0.0),
+                    glm::vec3(0.0, 1.0, 0.0));
+  }
 
   time += 1;
   time = time % 360;
-
-  if (isCameraRotating) {
-      modelview.top() = modelview.top() * glm::rotate(glm::mat4(1.0), glm::radians((float)time), glm::vec3(0.0f,1.0f,0.0f));
-  }
-
 
   /*
         *Supply the shader with all the matrices it expects.
@@ -109,20 +129,21 @@ void View::draw(util::OpenGLFunctions& gl)
   //gl.glPolygonMode(GL.GL_FRONT_AND_BACK,GL3.GL_LINE); //OUTLINES
 
   scenegraph->draw(modelview);
+
+  modelview.push(glm::translate(modelview.top(), eye));
+
+  if (fixedCamera) {
+    cameraScenegraph->draw(modelview);
+  }
+
   gl.glFlush();
 
   program.disable(gl);
 }
 
 
-void View::keySwitch(int camera)
-{
-    //printf("%n\n", camera);
-    if(camera == 1){
-        isCameraRotating = true;
-    } else if(camera == 2){
-        isCameraRotating = false;
-    }
+void View::switchCamera() {
+    fixedCamera = !fixedCamera;
 }
 
 
@@ -179,6 +200,56 @@ void View::setCamera(glm::vec3 e, glm::vec3 c, glm::vec3 u) {
     eye = e;
     center = c;
     up = u;
+}
+
+void View::addToCamera(glm::vec3 e, glm::vec3 c, glm::vec3 u) {
+    eye = glm::vec3(eye.x + e.x, eye.y + e.y, eye.z + e.z);
+    center = glm::vec3(center.x + c.x, center.y + c.y, center.z + c.z);
+    up = glm::vec3(up.x + u.x, up.y + u.y, up.z + u.z);
+}
+
+void View::onKeyPressed(int key) {
+
+    if(key == Qt::Key_W){
+        addToCamera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+    }
+
+    if(key == Qt::Key_A){
+        addToCamera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    }
+
+    if(key == Qt::Key_S){
+        addToCamera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f));
+    }
+
+    if(key == Qt::Key_D){
+        addToCamera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    }
+
+    if(key == Qt::Key_Up){
+        addToCamera(glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    }
+
+    if(key == Qt::Key_Down){
+        addToCamera(glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, -1.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    }
+
+    if(key == Qt::Key_Left){
+        addToCamera(glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    }
+
+    if(key == Qt::Key_Right){
+        addToCamera(glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f));
+    }
+
+    if(key == Qt::Key_F){
+        addToCamera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+    }
+
+    if(key == Qt::Key_C){
+        addToCamera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(-1.0f, 0.0f, 0.0f));
+    }
+
 }
 
 void View::dispose(util::OpenGLFunctions& gl)

@@ -12,6 +12,8 @@ using namespace std;
 #include "VertexAttrib.h"
 #include "sgraph/GLScenegraphRenderer.h"
 #include <stack>
+#include <QKeyEvent>
+
 using namespace std;
 
 /*
@@ -35,6 +37,8 @@ public:
 
     void initScenegraph(util::OpenGLFunctions& e,const string& in) throw(runtime_error);
 
+    void initCameraObjScenegraph(util::OpenGLFunctions &gl, const string& filename) throw(runtime_error);
+
     /*
      * This function is called whenever the window is to be redrawn
      */
@@ -53,10 +57,16 @@ public:
     void mousePressed(int x,int y);
     void mouseReleased(int x,int y);
     void mouseDragged(int x,int y);
-    void keySwitch(int camera);
+    void keySwitch(int c);
+
+    void switchCamera();
+
+    void onKeyPressed(int key);
 
     //takes a string in my config format and sets the cameras initial position
     void setCamera(glm::vec3 e, glm::vec3 c, glm::vec3 u);
+
+    void addToCamera(glm::vec3 e, glm::vec3 c, glm::vec3 u);
 
 private:
     int time;
@@ -74,13 +84,19 @@ private:
     stack<glm::mat4> modelview;
     //the scene graph
     sgraph::Scenegraph *scenegraph;
+    //the scene graph
+    sgraph::Scenegraph *cameraScenegraph;
     //the list of shader variables and their locations within the shader program
     util::ShaderLocationsVault shaderLocations;
     //the GLSL shader
     util::ShaderProgram program;
     sgraph::GLScenegraphRenderer renderer;
 
-    bool isCameraRotating = false;
+    bool fixedCamera = false;
+
+    // 1 for trackball camera
+    // 2 for fixed;
+    int camera = 1;
 
     glm::vec3 eye;
     glm::vec3 center;

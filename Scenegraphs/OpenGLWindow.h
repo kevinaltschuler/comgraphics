@@ -110,6 +110,7 @@ private:
   QTime timer;
   float framerate;
   std::string xmlfilename;
+  std::string camerasgraphfilename;
 };
 
 

@@ -15,7 +15,7 @@ OpenGLWindow::OpenGLWindow(QWindow *parent, int argc, char* argv[])
     :QOpenGLWindow(UpdateBehavior::NoPartialUpdate,parent)
 {
     //changes the title shown on the window
-    this->setTitle("Scenegraphs!");
+    this->setTitle("assignment 4");
     //resize the window to (400,400). This will result in a call to resizeGL
     this->resize(500,500);
 
@@ -64,6 +64,8 @@ OpenGLWindow::OpenGLWindow(QWindow *parent, int argc, char* argv[])
         xmlfilename = "scenegraphmodels/draft.xml";
     }
 
+    camerasgraphfilename = "scenegraphmodels/cone.xml";
+
     // format for the config file is
     // 0: path to xml file
     // 1: eye pos, ex: 0.0 50.0 80.0
@@ -100,6 +102,8 @@ void OpenGLWindow::initializeGL()
         exit(1);
     }
     view.initScenegraph(*gl, xmlfilename);
+
+    view.initCameraObjScenegraph(*gl, camerasgraphfilename);
 }
 
 void OpenGLWindow::paintGL()
@@ -166,15 +170,69 @@ void OpenGLWindow::mouseReleaseEvent(QMouseEvent *e)
 
  void OpenGLWindow::keyPressEvent(QKeyEvent *e)
  {
-     if(e->key() == Qt::Key_T){
-         printf("you have pressed T \n");
-         view.keySwitch(1);
+     if(e->key() == Qt::Key_Space){
+         printf("you have pressed space \n");
+         view.switchCamera();
          this->update();
      }
 
-     if(e->key() == Qt::Key_G){
-         printf("you have pressed G \n");
-         view.keySwitch(2);
+     if(e->key() == Qt::Key_W){
+         printf("you have pressed w \n");
+         view.onKeyPressed(e->key());
+         this->update();
+     }
+
+     if(e->key() == Qt::Key_A){
+         printf("you have pressed a \n");
+         view.onKeyPressed(e->key());
+         this->update();
+     }
+
+     if(e->key() == Qt::Key_S){
+         printf("you have pressed s \n");
+         view.onKeyPressed(e->key());
+         this->update();
+     }
+
+     if(e->key() == Qt::Key_D){
+         printf("you have pressed d \n");
+         view.onKeyPressed(e->key());
+         this->update();
+     }
+
+     if(e->key() == Qt::Key_Up){
+         printf("you have pressed up \n");
+         view.onKeyPressed(e->key());
+         this->update();
+     }
+
+     if(e->key() == Qt::Key_Down){
+         printf("you have pressed down \n");
+         view.onKeyPressed(e->key());
+         this->update();
+     }
+
+     if(e->key() == Qt::Key_Left){
+         printf("you have pressed left \n");
+         view.onKeyPressed(e->key());
+         this->update();
+     }
+
+     if(e->key() == Qt::Key_Right){
+         printf("you have pressed right \n");
+         view.onKeyPressed(e->key());
+         this->update();
+     }
+
+     if(e->key() == Qt::Key_F){
+         printf("you have pressed f \n");
+         view.onKeyPressed(e->key());
+         this->update();
+     }
+
+     if(e->key() == Qt::Key_C){
+         printf("you have pressed c \n");
+         view.onKeyPressed(e->key());
          this->update();
      }
 
