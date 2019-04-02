@@ -1,0 +1,76 @@
+<scene>
+    <instance name="sphere" path="models/sphere"></instance>
+    <instance name="box" path="models/box"></instance>
+    <instance name="cylinder" path="models/cylinder"></instance>
+    <instance name="cone" path="models/cone"></instance>
+	
+	<group>
+	<transform>
+		<set>
+		<translate> 0 17.5 0 </translate>
+		<scale> 40 5 30 </scale>
+		</set>
+		<group>
+			<object instanceof="box">
+				<material>
+                    <ambient>0.1 0 0.1</ambient>
+                    <diffuse>0.8 0 0.8</diffuse>
+                    <specular>0.8 0 0.8</specular>
+                    <shininess>20</shininess>
+				</material>
+			</object>			
+		</group>
+	</transform>
+    
+	<transform>
+		<set>
+		<translate> 0 42.5 0 </translate>
+		<scale> 40 5 30 </scale>
+		</set>
+		<group>
+			<object instanceof="box">
+				<material>
+                    <ambient>0.1 0 0.1</ambient>
+                    <diffuse>0.8 0 0.8</diffuse>
+                    <specular>0.8 0 0.8</specular>
+                    <shininess>20</shininess>
+				</material>
+			</object>			
+		</group>
+	</transform>
+    
+    <transform>
+        <set>
+            <translate> 0 67.5 0 </translate>
+            <scale> 40 5 30 </scale>
+        </set>
+        <group>
+            <object instanceof="box">
+                <material>
+                    <ambient>0.1 0 0.1</ambient>
+                    <diffuse>0.8 0 0.8</diffuse>
+                    <specular>0.8 0 0.8</specular>
+                    <shininess>20</shininess>
+                </material>
+            </object>
+        </group>
+    </transform>
+    
+    <transform>
+        <set>
+            <translate> 0 97.5 0 </translate>
+            <scale> 40 5 30 </scale>
+        </set>
+        <group>
+            <object instanceof="box">
+                <material>
+                    <ambient>0.1 0 0.1</ambient>
+                    <diffuse>0.8 0 0.8</diffuse>
+                    <specular>0.8 0 0.8</specular>
+                    <shininess>20</shininess>
+                </material>
+            </object>
+        </group>
+    </transform>
+	</group>
+</scene>

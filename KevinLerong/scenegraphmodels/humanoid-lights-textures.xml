@@ -1,0 +1,459 @@
+<scene>
+    <instance name="sphere" path="models/sphere"></instance>
+    <instance name="box" path="models/box"></instance>
+    <instance name="cylinder" path="models/cylinder"></instance>
+    <instance name="cone" path="models/cone"></instance>
+<!--	<image name="checkerboard" path="checkerboard.png" />
+	<image name="earthmap" path="earthmap.png" />
+-->
+
+	<light>
+		<ambient>0.8 0.8 0.8</ambient>
+		<diffuse>0.8 0.8 0.8</diffuse>
+		<specular>0.8 0.8 0.8</specular>
+		<position>0 0 100 </position>
+		<spotangle>180</spotangle>
+		<spotdirection>1 0 0 </spotdirection>
+	</light>
+
+	<transform>
+		<set>
+			<translate> 0 -36 0 </translate>
+			<scale> 72 72 72 </scale> <!-- humanoid of height 72 -->
+		</set>
+		<!-- light added to transform node -->
+
+		<group name="unit-height-humanoid">
+			<!-- light added to group node -->
+			<light>
+				<ambient>0.8 0.8 0.8</ambient>
+				<diffuse>0.8 0.8 0.8</diffuse>
+				<specular>0.8 0.8 0.8</specular>
+				<position>100 100 100 </position>
+				<spotangle>90</spotangle>
+				<spotdirection>1 0 0 </spotdirection>
+			</light>
+			<transform> <!-- scale humanoid down to height 1 so that height can be adjusted easily above -->
+				<set>
+					<scale> 0.0125 0.0125 0.0125</scale>
+				</set>
+				<group>
+					<group name="lowerbody">
+						<transform name="leftleg"> <!-- move leg into correct position -->
+							<set>
+								<translate>5 0 0</translate>
+							</set>
+							<group name="leg">
+								<transform name="shin">
+									<set>
+										<scale>1 20 1 </scale>					
+									</set>
+									<object instanceof="cylinder">
+										<material>
+											<ambient>0.1 0 0</ambient>
+											<diffuse>1 0 0</diffuse>
+											<specular>1 0 0</specular>
+											<shininess>10</shininess>
+											<!--the following four will be relevant in ray tracer -->
+										<!--	<absorption>0.5 </absorption>
+											<reflection>0.1</reflection>
+											<transparency>0.4</transparency>
+											<refractive>1.2</refractive> -->
+										</material>
+										<!-- light added to object node -->
+										<light>
+											<ambient>0.8 0.8 0.8</ambient>
+											<diffuse>0.8 0.8 0.8</diffuse>
+											<specular>0.8 0.8 0.8</specular>
+											<position>100 100 100 </position>
+											<direction>0 1 0 </direction>
+											<spotangle>90</spotangle>
+											<spotdirection>1 0 0 </spotdirection>
+										</light>
+									</object>			
+								</transform>
+								<transform> <!-- move knee into correct position with respect to shin -->
+									<set>
+										<translate>0 21 0 </translate>
+									</set>
+									<transform name="knee">
+										<set>
+											<scale>2 2 2 </scale>										
+										</set>
+										<object instanceof="sphere">
+											<material>
+												<ambient>0 0.1 0</ambient>
+												<diffuse>0 0.8 0</diffuse>
+												<specular>0 0.8 0</specular>
+												<shininess>20</shininess>
+											</material>
+										</object>			
+									</transform>
+								</transform>
+								<transform> <!-- move thigh into correct position with respect to knee -->
+									<set>
+										<translate>0 22 0 </translate>
+									</set>
+									<transform name="thigh">
+										<set>
+											<scale>1 20 1 </scale>										
+										</set>
+										<object instanceof="cylinder">
+											<material>
+												<ambient>0.1 0 0</ambient>
+												<diffuse>0.8 0 0</diffuse>
+												<specular>0.8 0 0</specular>
+												<shininess>20</shininess>
+											</material>
+										</object>			
+									</transform>
+								</transform>			
+								<transform> <!-- move hip into correct position to join to thigh -->
+									<set>
+										<translate>0 42 0 </translate>
+									</set>
+									<transform name="hip">
+										<set>
+											<scale>2 2 2 </scale>											
+										</set>
+										<object instanceof="sphere" texture="checkerboard">
+											<material>
+												<ambient>0 0.1 0</ambient>
+												<diffuse>0 0.8 0</diffuse>
+												<specular>0 0.8 0</specular>
+												<shininess>20</shininess>
+											</material>
+										</object>			
+									</transform>
+								</transform>
+							</group>
+						</transform>
+						
+						<transform name="rightleg"> <!-- move leg into correct position -->
+							<set>
+								<translate>-5 0 0</translate> 
+							</set>
+							<group name="leg">
+								<transform name="shin2">
+									<set>
+										<scale>1 20 1 </scale>					
+									</set>
+									<object instanceof="cylinder">
+										<material>
+											<ambient>1 0 0</ambient>
+											<diffuse>1 0 0</diffuse>
+											<specular>1 0 0</specular>
+											<shininess>10</shininess>
+											<!--the following four will be relevant in ray tracer -->
+										<!--	<absorption>0.5 </absorption>
+											<reflection>0.1</reflection>
+											<transparency>0.4</transparency>
+											<refractive>1.2</refractive> -->
+										</material>
+										<!-- light added to object node -->
+										<light>
+											<ambient>0.8 0.8 0.8</ambient>
+											<diffuse>0.8 0.8 0.8</diffuse>
+											<specular>0.8 0.8 0.8</specular>
+											<position>100 100 100 </position>
+											<direction>0 1 0 </direction>
+											<spotangle>90</spotangle>
+											<spotdirection>1 0 0 </spotdirection>
+										</light>
+									</object>			
+								</transform>
+								<transform> <!-- move knee into correct position with respect to shin -->
+									<set>
+										<translate>0 21 0 </translate>
+									</set>
+									<transform name="knee">
+										<set>
+											<scale>2 2 2 </scale>										
+										</set>
+										<object instanceof="sphere">
+											<material>
+												<ambient>0 0.1 0</ambient>
+												<diffuse>0 0.8 0</diffuse>
+												<specular>0 0.8 0</specular>
+												<shininess>20</shininess>
+											</material>
+										</object>			
+									</transform>
+								</transform>
+								<transform> <!-- move thigh into correct position with respect to knee -->
+									<set>
+										<translate>0 22 0 </translate>
+									</set>
+									<transform name="thigh">
+										<set>
+											<scale>1 20 1 </scale>										
+										</set>
+										<object instanceof="cylinder">
+											<material>
+                                                <ambient>1 0 0</ambient>
+                                                <diffuse>1 0 0</diffuse>
+                                                <specular>1 0 0</specular>
+                                                <shininess>10</shininess>
+											</material>
+										</object>			
+									</transform>
+								</transform>			
+								<transform> <!-- move hip into correct position to join to thigh -->
+									<set>
+										<translate>0 42 0 </translate>
+									</set>
+									<transform name="hip">
+										<set>
+											<scale>2 2 2 </scale>											
+										</set>
+										<object instanceof="sphere" texture="checkerboard">
+											<material>
+												<ambient>0 0.1 0</ambient>
+												<diffuse>0 0.8 0</diffuse>
+												<specular>0 0.8 0</specular>
+												<shininess>20</shininess>
+											</material>
+										</object>			
+									</transform>
+								</transform>
+							</group>			
+						</transform>
+					</group>
+					
+					<group name="upperbody">
+						<transform>
+							<set>
+								<translate> 0 42 0 </translate> <!-- move entire upper body into correct position -->
+							</set>			
+							<group>
+								<transform name="pelvis">
+									<set>
+										<translate>5 0 0</translate>
+										<rotate>90 0 0 1</rotate>
+										<scale>1 10 1</scale>
+									</set>
+									<object instanceof="cylinder">
+										<material>
+											<ambient>0.1 0.1 0</ambient>
+                                            <diffuse>0.8 0.8 0</diffuse>
+                                            <specular>0.8 0.8 0</specular>
+                                            <shininess>20</shininess>
+										</material>
+									</object>
+								</transform>
+								
+								<transform name="torso">
+									<set>
+										<translate>0 2 0 </translate>
+										<scale>1 25 1 </scale>
+									</set>
+									<object instanceof="cylinder">
+										<material>
+											<ambient>0 0.1 0</ambient>
+											<diffuse>0 0.8 0</diffuse>
+											<specular>0 0.8 0</specular>
+											<shininess>20</shininess>
+										</material>
+									</object>
+								</transform>	
+								
+								<transform name="shoulder">
+									<set>
+										<translate>10 27 0</translate>
+										<rotate>90 0 0 1</rotate>
+										<scale>1 20 1</scale>
+									</set>
+									<object instanceof="cylinder">
+										<material>
+											<ambient>0.1 0.1 0</ambient>
+											<diffuse>0.8 0.8 0</diffuse>
+											<specular>0.8 0.8 0</specular>
+											<shininess>20</shininess>
+										</material>
+									</object>
+								</transform>	
+								<transform name="lefthand">
+									<set>
+										<translate>10 27 0</translate> <!-- move entire hand into correct position -->
+									</set>
+									<transform name="hand">
+										<set> <!-- empty transform node, so that if entire arm is to be rotated about shoulder this node is available -->
+										</set>
+										<group>
+											<transform>
+												<set>
+													<translate>0 -10 0 </translate> <!--move entire arm into correct position with respect to shoulder -->
+												</set>
+												<transform name="arm">
+													<set>
+														<scale>1 10 1 </scale>
+														
+													</set>
+													<object instanceof="cylinder">
+														<material>
+															<ambient>0.1 0 0</ambient>
+															<diffuse>0.8 0 0</diffuse>
+															<specular>0.8 0 0</specular>
+															<shininess>20</shininess>
+														</material>
+													</object>			
+												</transform>
+											</transform>
+											<transform>
+												<set>
+													<translate>0 -11 0 </translate> <!-- move elbow to join arm -->
+												</set>
+												<transform name="elbow">
+													<set>
+														<scale>2 2 2 </scale>
+														
+													</set>
+													<object instanceof="sphere">
+														<material>
+															<ambient>0 0.1 0</ambient>
+															<diffuse>0 0.8 0</diffuse>
+															<specular>0 0.8 0</specular>
+															<shininess>20</shininess>
+														</material>
+													</object>			
+												</transform>	
+											</transform>		
+											<transform>
+												<set>
+													<translate>0 -12 0 </translate> <!-- move forearm to join elbow -->
+												</set>												
+												<transform name="forearm">
+													<set>
+														<translate>0 -10 0 </translate>	<!-- so that upper tip of cylinder is at origin -->
+														<scale>1 10 1 </scale>
+													</set>
+													<object instanceof="cylinder">
+														<material>
+															<ambient>0.1 0 0.1</ambient>
+															<diffuse>0.8 0 0.8</diffuse>
+															<specular>0.8 0 0.8</specular>
+															<shininess>20</shininess>
+														</material>
+													</object>			
+												</transform>
+											</transform>
+										</group>
+									</transform>
+								</transform>
+								<transform name="righthand">
+									<set>
+										<translate>-10 27 0</translate> <!-- move entire hand into correct position -->
+									</set>
+									<transform name="hand2">
+										<set> <!-- empty transform node, so that if entire arm is to be rotated about shoulder this node is available -->
+										</set>
+										<group>
+											<transform>
+												<set>
+													<translate>0 -10 0 </translate> <!--move entire arm into correct position with respect to shoulder -->
+												</set>
+												<transform name="arm">
+													<set>
+														<scale>1 10 1 </scale>
+														
+													</set>
+													<object instanceof="cylinder">
+														<material>
+															<ambient>0.1 0 0</ambient>
+															<diffuse>0.8 0 0</diffuse>
+															<specular>0.8 0 0</specular>
+															<shininess>20</shininess>
+														</material>
+													</object>			
+												</transform>
+											</transform>
+											<transform>
+												<set>
+													<translate>0 -11 0 </translate> <!-- move elbow to join arm -->
+												</set>
+												<transform name="elbow">
+													<set>
+														<scale>2 2 2 </scale>
+														
+													</set>
+													<object instanceof="sphere">
+														<material>
+															<ambient>0 0.1 0</ambient>
+															<diffuse>0 0.8 0</diffuse>
+															<specular>0 0.8 0</specular>
+															<shininess>20</shininess>
+														</material>
+													</object>			
+												</transform>	
+											</transform>		
+											<transform>
+												<set>
+													<translate>0 -12 0 </translate> <!-- move forearm to join elbow -->
+												</set>												
+												<transform name="forearm">
+													<set>
+														<translate>0 -10 0 </translate>	<!-- so that upper tip of cylinder is at origin -->
+														<scale>1 10 1 </scale>
+													</set>
+													<object instanceof="cylinder">
+														<material>
+															<ambient>0.1 0 0.1</ambient>
+															<diffuse>0.8 0 0.8</diffuse>
+															<specular>0.8 0 0.8</specular>
+															<shininess>20</shininess>
+														</material>
+													</object>			
+												</transform>
+											</transform>
+										</group>
+									</transform>								
+									
+								</transform>
+							</group>
+						</transform>		
+					</group>
+					
+					<group name="headneck">
+						<transform>
+							<set>
+								<translate>0 70 0 </translate>
+							</set>
+							
+							<group>
+								<transform name="neck">
+									<set>
+										<scale>1 5 1 </scale>
+									</set>
+									<object instanceof="cylinder">
+										<material>
+											<ambient>0.1 0 0</ambient>
+											<diffuse>0.8 0 0</diffuse>
+											<specular>0.8 0 0</specular>
+											<shininess>20</shininess>
+										</material>
+									</object>
+								</transform>
+										
+								<transform name="head">
+									<set>
+										<translate>0 8 0 </translate>
+										<scale> 3.2 3.5 3.2</scale>
+									</set>
+									<object instanceof="sphere">
+										<material>
+											<ambient>0.1 0.1 0</ambient>
+											<diffuse>0.8 0.8 0</diffuse>
+											<specular>0.8 0.8 0</specular>
+											<shininess>20</shininess>
+										</material>
+									</object>
+								</transform>			
+							</group>
+						</transform>
+					</group>
+				</group>
+			</transform>
+			
+		</group>		
+	</transform>
+</scene>

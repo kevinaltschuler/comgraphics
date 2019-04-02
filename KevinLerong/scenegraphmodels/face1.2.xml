@@ -1,0 +1,157 @@
+<scene>
+	<instance name="sphere" path="models/sphere.obj" />
+	<instance name="box" path="models/box.obj" />
+	<instance name="cylinder" path="models/cylinder.obj" />
+	<instance name="cone" path="models/cone.obj" />
+	
+    <transform name ="window-part1">
+        <set>
+            <translate> 0 75 0 </translate>
+        </set>
+        <group name="window-part">
+            <transform name="Box4-1">
+                <set>
+                    <translate> 0 12.5 0 </translate>
+                    <scale> 40 15 5 </scale>
+                </set>
+                <group>
+                    <object instanceof="box">
+                        <material>
+                            <ambient>0.1 0 0.1</ambient>
+                            <diffuse>0.8 0 0.8</diffuse>
+                            <specular>0.8 0 0.8</specular>
+                            <shininess>20</shininess>
+                        </material>
+                    </object>
+                </group>
+            </transform>
+        
+<!--            <transform name="Box6-1">-->
+<!--                <set>-->
+<!--                    <translate> 0 0 0 </translate>-->
+<!--                    <scale> 8 10 5 </scale>-->
+<!--                </set>-->
+<!--                <group>-->
+<!--                    <object instanceof="box">-->
+<!--                        <material>-->
+<!--                        <color> 1 0 0 </color>-->
+<!--                        </material>-->
+<!--                    </object>-->
+<!--                </group>-->
+<!--            </transform>-->
+
+            <transform name="Box6-2">
+                <set>
+                    <translate> 16 0 0 </translate>
+                    <scale> 8 10 5 </scale>
+                </set>
+                <group>
+                    <object instanceof="box">
+                        <material>
+                            <ambient>0.1 0 0.1</ambient>
+                            <diffuse>0.8 0 0.8</diffuse>
+                            <specular>0.8 0 0.8</specular>
+                            <shininess>20</shininess>
+                        </material>
+                    </object>
+                </group>
+            </transform>
+        
+            <transform name="Box6-3">
+                <set>
+                    <translate> -16 0 0 </translate>
+                    <scale> 8 10 5 </scale>
+                </set>
+                <group>
+                    <object instanceof="box">
+                        <material>
+                            <ambient>0.1 0 0.1</ambient>
+                            <diffuse>0.8 0 0.8</diffuse>
+                            <specular>0.8 0 0.8</specular>
+                            <shininess>20</shininess>
+                        </material>
+                    </object>
+                </group>
+            </transform>
+        </group>
+    </transform>
+    
+    <transform name="window-part2">
+        <set>
+            <translate> 0 50 0 </translate>
+        </set>
+        <group copyof="window-part">
+        </group>
+    </transform>
+    
+    <transform name="window-part3">
+        <set>
+            <translate> 0 25 0 </translate>
+        </set>
+        <group copyof="window-part">
+        </group>
+    </transform>
+    
+    <transform name ="door-part">
+        <set>
+            <translate> 0 0 0 </translate>
+        </set>
+        <group name="door">
+            <transform name="Box4-1">
+                <set>
+                    <translate> 0 12.5 0 </translate>
+                    <scale> 40 15 5 </scale>
+                </set>
+                <group>
+                    <object instanceof="box">
+                        <material>
+                            <ambient>0.1 0 0.1</ambient>
+                            <diffuse>0.8 0 0.8</diffuse>
+                            <specular>0.8 0 0.8</specular>
+                            <shininess>20</shininess>
+                        </material>
+                    </object>
+                </group>
+            </transform>
+            
+            <transform name="Box5-1">
+                <set>
+                    <translate> 12.5 0 0 </translate>
+                    <scale> 15 10 5 </scale>
+                </set>
+                <group>
+                    <object instanceof="box">
+                        <material>
+                            <ambient>0.1 0 0.1</ambient>
+                            <diffuse>0.8 0 0.8</diffuse>
+                            <specular>0.8 0 0.8</specular>
+                            <shininess>20</shininess>
+                        </material>
+                    </object>
+                </group>
+            </transform>
+            
+            <transform name="Box5-2">
+                <set>
+                    <translate> -12.5 0 0 </translate>
+                    <scale> 15 10 5 </scale>
+                </set>
+                <group>
+                    <object instanceof="box">
+                        <material>
+                            <ambient>0.1 0 0.1</ambient>
+                            <diffuse>0.8 0 0.8</diffuse>
+                            <specular>0.8 0 0.8</specular>
+                            <shininess>20</shininess>
+                        </material>
+                    </object>
+                </group>
+            </transform>
+            
+        </group>
+    </transform>
+    
+
+    
+    
+</scene>

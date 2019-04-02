@@ -1,0 +1,63 @@
+<scene>
+    <instance name="sphere" path="models/sphere"></instance>
+    <instance name="cylinder" path="models/cylinder"></instance>
+    <instance name="cone" path="models/cone"></instance>
+    <transform>
+        <set>
+            <translate>0 0 0</translate>
+        </set>
+        <group name="camera">
+            <transform name="sph">
+                    <set>
+                        <scale>3 3 3</scale>
+                    </set>
+                    <object instanceof="sphere">
+                        <material>
+                            <color>1 1 1</color>
+                        </material>
+                    </object>
+            </transform>
+            <group name="arrow">
+                    <transform name="stick">
+                        <set>
+                            <scale>1 10 1</scale>
+                        </set>
+                        <object instanceof="cylinder">
+                            <material>
+                                <color>1 0 0</color>
+                            </material>
+                        </object>
+                    </transform>
+                    <transform>
+                        <set>
+                            <translate>0 10 0</translate>
+                        </set>
+                        <transform name="head">
+                            <set>
+                                <scale>2 2 2</scale>
+                            </set>
+                            <object instanceof="cone">
+                                <material>
+                                    <color>0 1 0</color>
+                                </material>
+                            </object>
+                        </transform>
+                    </transform>
+            </group>
+            <transform name="rightarrow">
+                <set>
+                    <rotate>-90 0 0 1</rotate>
+                </set>
+                <group copyof="arrow">
+                </group>
+            </transform>
+            <transform name="rightfrontarrow">
+                <set>
+                    <rotate>-90 1 0 0</rotate>
+                </set>
+                <group copyof="arrow">
+                </group>
+            </transform>
+        </group>
+    </transform>
+</scene>

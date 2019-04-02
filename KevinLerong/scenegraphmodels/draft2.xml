@@ -1,0 +1,31 @@
+<scene>
+    <transform>
+        <set>
+            <rotate> 0 0 0 1 </rotate>
+        </set>
+        <group>
+            <transform>
+                <set>
+                    <translate>0 0 0</translate>
+                </set>
+                <group name="buidling1" from="scenegraphmodels/another-part.xml">
+                </group>
+            </transform>
+
+            <transform>
+                <set>
+                    <scale>0.5 1 0.5</scale>
+                    <translate> 75 0 -20</translate>
+                </set>
+                <group name="buidling2" from="scenegraphmodels/another-part.xml">
+                </group>
+            </transform>
+            
+            
+            
+            
+           
+            
+        </group>
+    </transform>
+</scene>

@@ -1,0 +1,35 @@
+<scene>
+    <transform>
+        <set>
+            <rotate> 0 0 0 1 </rotate>
+            <translate>0 -30 0</translate>
+        </set>
+        <group>
+            
+            <transform>
+                <set>
+                    <translate>-30 0 0</translate>
+                </set>
+                <group name="building1" from="scenegraphmodels/draft1.xml">
+                </group>
+            </transform>
+            
+            <transform>
+                <set>
+                    <translate>30 0 0</translate>
+                </set>
+                <group name="building2" from="scenegraphmodels/draft2.xml">
+                </group>
+            </transform>
+            
+            <transform>
+                <set>
+                    <translate>0 -2.5 0</translate>
+                </set>
+                <group name="base" from="scenegraphmodels/base.xml">
+                </group>
+            </transform>
+
+        </group>
+    </transform>
+</scene>

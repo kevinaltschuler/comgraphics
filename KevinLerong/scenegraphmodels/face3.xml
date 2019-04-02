@@ -1,0 +1,25 @@
+<scene>
+	<instance name="sphere" path="models/sphere.obj" />
+	<instance name="box" path="models/box.obj" />
+	<instance name="cylinder" path="models/cylinder.obj" />
+	<instance name="cone" path="models/cone.obj" />
+	
+	<group>
+	<transform>
+		<set>
+		<translate> 0 50 0 </translate>
+		<scale> 40 100 5 </scale>
+		</set>
+		<group>
+			<object instanceof="box">
+				<material>
+                    <ambient>0.1 0 0.1</ambient>
+                    <diffuse>0.8 0 0.8</diffuse>
+                    <specular>0.8 0 0.8</specular>
+                    <shininess>20</shininess>
+				</material>
+			</object>			
+		</group>
+	</transform>
+	</group>
+</scene>

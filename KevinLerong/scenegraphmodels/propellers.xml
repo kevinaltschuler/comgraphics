@@ -1,0 +1,106 @@
+<scene>
+    <instance name="sphere" path="models/sphere.obj" />
+    <instance name="box" path="models/box.obj" />
+    <instance name="cylinder" path="models/cylinder.obj" />
+    <instance name="cone" path="models/cone.obj" />
+    
+                            <transform>
+                                <set>
+                                    <translate>-10 0 0</translate>
+                                    <translate>0.75 0 0.75</translate>
+                                </set>
+                                <group name="propellers">
+                                    <transform name="propeller1">
+                                            <set>
+                                                <rotate>-60 0 1 0</rotate>
+                                                <scale>5 0.1 0.5</scale>
+                                                <translate>0.5 0.5 0.5</translate>
+                                            </set>
+                                            <object instanceof="box">
+                                                <material>
+                                                    <color>1 1 1</color>
+                                                </material>
+                                            </object>
+                                    </transform>
+                                    <transform name="propeller2">
+                                        <set>
+                                            <rotate>-170 0 1 0</rotate>
+                                            <scale>5 0.1 0.5</scale>
+                                            <translate>0.5 0.5 0.5</translate>
+                                        </set>
+                                        <object instanceof="box">
+                                            <material>
+                                                <color>0 0 1</color>
+                                            </material>
+                                        </object>
+                                    </transform>
+                                    <transform name="propeller3">
+                                        <set>
+                                            <rotate>60 0 1 0</rotate>
+                                            <scale>5 0.1 0.5</scale>
+                                            <translate>0.5 0.5 0.5</translate>
+                                        </set>
+                                        <object instanceof="box">
+                                            <material>
+                                                <color>1 1 1</color>
+                                            </material>
+                                        </object>
+                                    </transform>
+                                    <transform name="scew">
+                                        <set>
+                                            <scale>1 1 1</scale>
+                                            <translate>0 0 0</translate>
+                                        </set>
+                                        <object instanceof="cone">
+                                            <material>
+                                                <color>1 1 1</color>
+                                            </material>
+                                        </object>
+                                    </transform>
+                                </group>
+                            </transform>
+                            
+                
+                
+                <transform name ="leg2">
+                    <set>
+                        <translate>0 -3 4</translate>
+                        <rotate>90 0 1 0</rotate>
+                        <translate>0 -0.75 -0.75</translate>
+                    </set>
+                    <group copyof="leg">
+                    </group>
+                </transform>
+                
+                <transform name ="leg3">
+                    <set>
+                        <translate>0 -3 -4</translate>
+                        <rotate>-90 0 1 0</rotate>
+                        <translate>0 -0.75 -0.75</translate>
+                    </set>
+                    <group copyof="leg">
+                    </group>
+                </transform>
+                
+                <transform name ="leg4">
+                    <set>
+                        <translate>4 -3 0</translate>
+                        <rotate>180 0 1 0</rotate>
+                        <translate>0 -0.75 -0.75</translate>
+                    </set>
+                    <group copyof="leg">
+                    </group>
+                </transform>
+                
+                
+                
+                
+            </group>
+        
+        
+        </transform>
+        
+        
+        
+    
+</scene>

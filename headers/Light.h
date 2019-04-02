@@ -54,6 +54,7 @@ namespace util
     inline void setSpecular(const glm::vec3& spec);
 
     inline glm::vec4 getPosition() const;
+    inline glm::vec3 getPositionVec3() const;
     inline void setPosition(const glm::vec4& pos);
     inline void setPosition(float x, float y, float z);
     inline void setDirection(float x, float y, float z);
@@ -145,6 +146,11 @@ namespace util
   {
     return  glm::vec4(position);
   }
+    
+    glm::vec3 Light::getPositionVec3() const
+    {
+        return  glm::vec3(position.x, position.y, position.z);
+    }
 
   glm::vec4 Light::getSpotDirection() const
   {
