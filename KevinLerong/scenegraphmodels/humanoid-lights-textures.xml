@@ -3,9 +3,8 @@
     <instance name="box" path="models/box"></instance>
     <instance name="cylinder" path="models/cylinder"></instance>
     <instance name="cone" path="models/cone"></instance>
-<!--	<image name="checkerboard" path="checkerboard.png" />
-	<image name="earthmap" path="earthmap.png" />
--->
+    <image name="checkerboard" path="textures/checkerboard.png" />
+	<image name="earthmap" path="textures/earthmap.png" />
 
 	<light>
 		<ambient>0.8 0.8 0.8</ambient>
