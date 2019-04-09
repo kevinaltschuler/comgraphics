@@ -220,6 +220,17 @@ namespace sgraph
         }
       return lights;
     }
+
+    HitRecord getIntersection(_3DRay ray, stack<glm::mat4>& modelview) {
+        modelview.push(glm::mat4(modelview.top()));
+        modelview.top() = modelview.top() * transform;
+        HitRecord hit = HitRecord();
+        if (child!=NULL) {
+          hit = child->getIntersection(ray, modelview);
+        }
+        modelview.pop();
+        return hit;
+    }
   };
 }
 #endif

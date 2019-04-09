@@ -242,7 +242,7 @@ DIST          = ../../../Qt/5.12.0/clang_64/mkspecs/features/spec_pre.prf \
 		sgraph/SceneXMLReader.h \
 		sgraph/TransformNode.h \
 		_3DRay.h \
-		hitrecord.h main.cpp \
+		HitRecord.h main.cpp \
 		OpenGLWindow.cpp \
 		View.cpp
 QMAKE_TARGET  = KevinLerong
@@ -633,7 +633,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents OpenGLWindow.h VertexAttrib.h View.h sgraph/AbstractNode.h sgraph/GLScenegraphRenderer.h sgraph/GroupNode.h sgraph/INode.h sgraph/IScenegraph.h sgraph/LeafNode.h sgraph/Scenegraph.h sgraph/scenegraphinfo.h sgraph/SceneXMLReader.h sgraph/TransformNode.h _3DRay.h hitrecord.h $(DISTDIR)/
+	$(COPY_FILE) --parents OpenGLWindow.h VertexAttrib.h View.h sgraph/AbstractNode.h sgraph/GLScenegraphRenderer.h sgraph/GroupNode.h sgraph/INode.h sgraph/IScenegraph.h sgraph/LeafNode.h sgraph/Scenegraph.h sgraph/scenegraphinfo.h sgraph/SceneXMLReader.h sgraph/TransformNode.h _3DRay.h HitRecord.h $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp OpenGLWindow.cpp View.cpp $(DISTDIR)/
 
 
@@ -768,10 +768,13 @@ moc_OpenGLWindow.cpp: ../../../Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/Q
 		sgraph/INode.h \
 		../headers/Light.h \
 		../headers/Material.h \
-		../headers/glm/gtc/type_ptr.hpp \
-		../headers/glm/gtc/quaternion.hpp \
+		HitRecord.h \
+		../headers/glm/gtc/matrix_transform.hpp \
 		../headers/glm/gtc/constants.hpp \
 		../headers/glm/gtc/constants.inl \
+		../headers/glm/gtc/matrix_transform.inl \
+		../headers/glm/gtc/type_ptr.hpp \
+		../headers/glm/gtc/quaternion.hpp \
 		../headers/glm/gtc/quaternion.inl \
 		../headers/glm/gtc/type_ptr.inl \
 		../headers/TextureImage.h \
@@ -780,6 +783,7 @@ moc_OpenGLWindow.cpp: ../../../Qt/5.12.0/clang_64/lib/QtCore.framework/Headers/Q
 		../headers/ObjectInstance.h \
 		../headers/PolygonMesh.h \
 		../headers/IVertexData.h \
+		_3DRay.h \
 		VertexAttrib.h \
 		OpenGLWindow.h \
 		moc_predefs.h \
@@ -906,10 +910,13 @@ main.o: main.cpp ../../../Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QAp
 		sgraph/INode.h \
 		../headers/Light.h \
 		../headers/Material.h \
-		../headers/glm/gtc/type_ptr.hpp \
-		../headers/glm/gtc/quaternion.hpp \
+		HitRecord.h \
+		../headers/glm/gtc/matrix_transform.hpp \
 		../headers/glm/gtc/constants.hpp \
 		../headers/glm/gtc/constants.inl \
+		../headers/glm/gtc/matrix_transform.inl \
+		../headers/glm/gtc/type_ptr.hpp \
+		../headers/glm/gtc/quaternion.hpp \
 		../headers/glm/gtc/quaternion.inl \
 		../headers/glm/gtc/type_ptr.inl \
 		../headers/TextureImage.h \
@@ -918,6 +925,7 @@ main.o: main.cpp ../../../Qt/5.12.0/clang_64/lib/QtWidgets.framework/Headers/QAp
 		../headers/ObjectInstance.h \
 		../headers/PolygonMesh.h \
 		../headers/IVertexData.h \
+		_3DRay.h \
 		VertexAttrib.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
@@ -1021,10 +1029,13 @@ OpenGLWindow.o: OpenGLWindow.cpp OpenGLWindow.h \
 		sgraph/INode.h \
 		../headers/Light.h \
 		../headers/Material.h \
-		../headers/glm/gtc/type_ptr.hpp \
-		../headers/glm/gtc/quaternion.hpp \
+		HitRecord.h \
+		../headers/glm/gtc/matrix_transform.hpp \
 		../headers/glm/gtc/constants.hpp \
 		../headers/glm/gtc/constants.inl \
+		../headers/glm/gtc/matrix_transform.inl \
+		../headers/glm/gtc/type_ptr.hpp \
+		../headers/glm/gtc/quaternion.hpp \
 		../headers/glm/gtc/quaternion.inl \
 		../headers/glm/gtc/type_ptr.inl \
 		../headers/TextureImage.h \
@@ -1033,6 +1044,7 @@ OpenGLWindow.o: OpenGLWindow.cpp OpenGLWindow.h \
 		../headers/ObjectInstance.h \
 		../headers/PolygonMesh.h \
 		../headers/IVertexData.h \
+		_3DRay.h \
 		VertexAttrib.h \
 		../../../Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QScreen \
 		../../../Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qscreen.h \
@@ -1136,10 +1148,13 @@ View.o: View.cpp View.h \
 		sgraph/INode.h \
 		../headers/Light.h \
 		../headers/Material.h \
-		../headers/glm/gtc/type_ptr.hpp \
-		../headers/glm/gtc/quaternion.hpp \
+		HitRecord.h \
+		../headers/glm/gtc/matrix_transform.hpp \
 		../headers/glm/gtc/constants.hpp \
 		../headers/glm/gtc/constants.inl \
+		../headers/glm/gtc/matrix_transform.inl \
+		../headers/glm/gtc/type_ptr.hpp \
+		../headers/glm/gtc/quaternion.hpp \
 		../headers/glm/gtc/quaternion.inl \
 		../headers/glm/gtc/type_ptr.inl \
 		../headers/TextureImage.h \
@@ -1148,13 +1163,12 @@ View.o: View.cpp View.h \
 		../headers/ObjectInstance.h \
 		../headers/PolygonMesh.h \
 		../headers/IVertexData.h \
+		_3DRay.h \
 		VertexAttrib.h \
 		../../../Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/QKeyEvent \
 		../../../Qt/5.12.0/clang_64/lib/QtGui.framework/Headers/qevent.h \
 		sgraph/ScenegraphInfo.h \
 		sgraph/SceneXMLReader.h \
-		../headers/glm/gtc/matrix_transform.hpp \
-		../headers/glm/gtc/matrix_transform.inl \
 		../../../Qt/5.12.0/clang_64/lib/QtXml.framework/Headers/QXmlDefaultHandler \
 		../../../Qt/5.12.0/clang_64/lib/QtXml.framework/Headers/qxml.h \
 		../headers/ObjImporter.h \

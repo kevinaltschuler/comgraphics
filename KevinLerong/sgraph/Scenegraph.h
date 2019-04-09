@@ -8,6 +8,7 @@
 #include "IVertexData.h"
 #include "PolygonMesh.h"
 #include "_3DRay.h"
+#include "HitRecord.h"
 #include <string>
 #include <map>
 using namespace std;
@@ -124,7 +125,22 @@ namespace sgraph
 
     glm::vec3 raycast(_3DRay ray, stack<glm::mat4> modelview) {
         //calculate the color here then return it;
-        return glm::vec3(0,0,0);
+
+        //default color
+        glm::vec3 color = glm::vec3(0,0,0);
+
+        HitRecord hitRecord = getRoot()->getIntersection(ray, modelview);
+
+        if (hitRecord.hit) {
+            printf("hit");
+            color = shade(hitRecord);
+        }
+
+        return color;
+    }
+
+    glm::vec3 shade(HitRecord hitRecord) {
+        return glm::vec3(1,1,1);
     }
 
     void animate(float time)

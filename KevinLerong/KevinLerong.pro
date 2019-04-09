@@ -30,4 +30,4 @@ HEADERS += \
     sgraph/SceneXMLReader.h \
     sgraph/TransformNode.h \
     _3DRay.h \
-    hitrecord.h
+    HitRecord.h

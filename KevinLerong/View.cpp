@@ -7,6 +7,8 @@
 #include <vector>
 #include <map>
 #include <string>
+#include <math.h>       /* tan */
+#define PI 3.14159265359
 using namespace std;
 
 View::View()
@@ -117,7 +119,7 @@ void View::draw(util::OpenGLFunctions& gl)
 
 
   modelview.top() = modelview.top() *
-          glm::lookAt(glm::vec3(80.0, 50.0, 100.0),
+          glm::lookAt(glm::vec3(0.0, 0.0, 200.0),
                 glm::vec3(0.0, 50.0, 0.0),
                 glm::vec3(0.0, 1.0, 0.0)) * trackballTransform;
 
@@ -149,8 +151,11 @@ void View::raytrace(int w, int h, stack<glm::mat4> stack) {
     for (int i = 0; i < w; i++) {
       for (int j = 0; j < h; j++) {
         //_3DRay ray = calculate the ray to be cast here;
-         _3DRay ray = _3DRay(glm::vec3(0,0,0), glm::vec3(0,0,0));
+         _3DRay ray = _3DRay(glm::vec4(0,0,0,1), glm::vec4(i - w / 2, j - h / 2,
+                                       (float) (-0.5f * h / tan((float) (60*PI) / 180)), 0));
         colors[i][j] = scenegraph->raycast(ray, stack);
+        if (colors[i][j].x != 0.0f && colors[i][j].y != 0.0f && colors[i][j].z != 0.0f)
+            printf("%f %f %f \n", colors[i][j].x, colors[i][j].y, colors[i][j].z);
       }
     }
 }

@@ -167,6 +167,20 @@ namespace sgraph
         }
       return lights;
     }
+
+    HitRecord getIntersection(_3DRay ray, stack<glm::mat4>& modelview) {
+        HitRecord hit = HitRecord();
+        for (int i = 0; i < children.size(); i++) {
+          HitRecord childsHit = children.at(i)->getIntersection(ray, modelview);
+
+          if (!hit.hit ||
+            (childsHit.hit && childsHit.t < hit.t)) {
+            hit = childsHit;
+          }
+
+        }
+        return hit;
+    }
   };
 }
 

@@ -17,55 +17,17 @@
 
 	<transform>
 		<set>
-			<translate> 0 -36 0 </translate>
+			<translate> 0 0 0 </translate>
 			<scale> 72 72 72 </scale> <!-- humanoid of height 72 -->
 		</set>
-		<!-- light added to transform node -->
 
-		<group name="unit-height-humanoid">
-			<!-- light added to group node -->
-			<light>
-				<ambient>0.8 0.8 0.8</ambient>
-				<diffuse>0.8 0.8 0.8</diffuse>
-				<specular>0.8 0.8 0.8</specular>
-				<position>100 100 100 </position>
-				<spotangle>90</spotangle>
-				<spotdirection>1 0 0 </spotdirection>
-			</light>
-			<transform> <!-- scale humanoid down to height 1 so that height can be adjusted easily above -->
-				<set>
-					<scale> 0.0125 0.0125 0.0125</scale>
-				</set>
-				<group>
-					
-					<group name="headneck">
-						<transform>
-							<set>
-								<translate>0 70 0 </translate>
-							</set>
-							
-							<group>
-										
-								<transform name="head">
-									<set>
-										<translate>0 8 0 </translate>
-										<scale> 30.2 30.5 30.2</scale>
-									</set>
-									<object instanceof="sphere" texture="checkerboard">
-										<material>
-											<ambient>0.1 0.1 0</ambient>
-											<diffuse>0.8 0.8 0</diffuse>
-											<specular>0.8 0.8 0</specular>
-											<shininess>20</shininess>
-										</material>
-									</object>
-								</transform>			
-							</group>
-						</transform>
-					</group>
-				</group>
-			</transform>
-			
-		</group>		
+		<object instanceof="sphere" texture="checkerboard">
+			<material>
+				<ambient>0.1 0.1 0</ambient>
+				<diffuse>0.8 0.8 0</diffuse>
+				<specular>0.8 0.8 0</specular>
+				<shininess>20</shininess>
+			</material>
+		</object>			
 	</transform>
 </scene>

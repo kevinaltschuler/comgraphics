@@ -94,6 +94,52 @@ public:
             context.drawMesh(objInstanceName,material,textureName,modelView.top());
         }
     }
+
+    HitRecord getIntersection(_3DRay ray, stack<glm::mat4>& modelview) {
+        glm::mat4 matrixRay = glm::inverse(glm::mat4(modelview.top()));
+        _3DRay newRay = ray.mul(matrixRay);
+        HitRecord newOne = HitRecord();
+
+        if (objInstanceName.find("box") != std::string::npos) {
+            //newOne = intersectBox(newRay, modelview);
+        }
+        else if (objInstanceName.find("sphere") != std::string::npos) {
+            HitRecord result = HitRecord();
+            glm::vec4 pos = newRay.pos;
+            glm::vec4 dir = newRay.dir;
+
+            //printf("%f %f %f \n", dir.x, dir.y, dir.z);
+
+            float A = dir.x * dir.x + dir.y*dir.y + dir.z*dir.z;
+            float B = 2* (dir.x*(pos.x-0) +dir.y*(pos.y-0)+dir.z*(pos.z-0)); // center: (0,0,0)
+            float C = (pos.x - 0) * (pos.x - 0)
+              + (pos.y - 0)*(pos.y - 0)
+              + (pos.z - 0)*(pos.z - 0)
+              -1;
+
+            printf("A:%f B:%f C:%f \n", A, B, C);
+
+            float delta = B*B - 4 * A * C;
+
+            if (delta >= 0 ) {
+                float t1 = B*(-1)-((float) sqrt(delta))/(2*A);
+                float t2 = B*(-1)+((float) sqrt(delta))/(2*A);
+                float tMin = min(t1, t2);
+                if (tMin > 0 ) {
+                    printf("t min than 0 \n");
+                    glm::vec4 newIntersectP = pos + dir * tMin;
+                    modelview.push(modelview.top());
+                    modelview.top() = glm::transpose(glm::inverse(modelview.top()));
+                    glm::vec4 normal = newIntersectP * modelview.top();
+                    normal = glm::vec4(normal.x, normal.y, normal.z, 0);
+                    modelview.pop();
+                    result = HitRecord(tMin, newIntersectP, normal, this->getMaterial());
+                }
+            }
+            return result;
+        }
+        return newOne;
+    }
 };
 }
 #endif

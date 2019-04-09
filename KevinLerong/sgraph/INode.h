@@ -5,6 +5,8 @@
 #include <glm/glm.hpp>
 #include "Light.h"
 #include "Material.h"
+#include "HitRecord.h"
+#include "_3DRay.h"
 #include <vector>
 #include <stack>
 #include <string>
@@ -133,6 +135,8 @@ namespace sgraph
        * transformation.
        */
     virtual vector<util::Light> getLightsInView(stack<glm::mat4>& modelview)=0;
+
+    virtual HitRecord getIntersection(_3DRay ray, stack<glm::mat4>& modelview)=0;
   };
 }
 
