@@ -3,7 +3,6 @@
 
 #include "OpenGLFunctions.h"
 #include <exception>
-using namespace std;
 #include <glm/glm.hpp>
 #include "ShaderProgram.h"
 #include "sgraph/Scenegraph.h"
@@ -78,6 +77,8 @@ public:
 
     void addToCamera(glm::vec3 e, glm::vec3 c, glm::vec3 u);
 
+    void raytrace(int w, int h, stack<glm::mat4> stack);
+
 private:
     int time;
     //record the current window width and height
@@ -117,6 +118,8 @@ private:
     int zoom = 0;
 
     bool renderCamera= false;
+
+    bool rayTrace = false;
 };
 
 #endif // VIEW_H

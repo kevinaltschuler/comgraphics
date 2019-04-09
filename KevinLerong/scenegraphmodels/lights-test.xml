@@ -15,12 +15,12 @@
 	</light>
 
 
-	<!-- <transform>
+	<transform>
             <set>
-                <rotate>0 0 0 0</rotate>
+                <rotate>0 0 1 0</rotate>
                 <scale>1 1 1</scale>
                 <translate>0 0 0</translate>
-            </set> -->
+            </set>
             <object instanceof="cylinder">
 				<material>
 					<ambient>0.1 0 0.1</ambient>
@@ -29,6 +29,6 @@
 					<shininess>20</shininess>
 				</material>
 			</object>
-    <!-- </transform> -->
+    </transform>
 	
 </scene>

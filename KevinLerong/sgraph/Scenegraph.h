@@ -7,6 +7,7 @@
 #include "glm/glm.hpp"
 #include "IVertexData.h"
 #include "PolygonMesh.h"
+#include "_3DRay.h"
 #include <string>
 #include <map>
 using namespace std;
@@ -121,9 +122,10 @@ namespace sgraph
         }
     }
 
-
-
-
+    glm::vec3 raycast(_3DRay ray, stack<glm::mat4> modelview) {
+        //calculate the color here then return it;
+        return glm::vec3(0,0,0);
+    }
 
     void animate(float time)
     {

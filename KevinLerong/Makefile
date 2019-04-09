@@ -240,7 +240,9 @@ DIST          = ../../../Qt/5.12.0/clang_64/mkspecs/features/spec_pre.prf \
 		sgraph/Scenegraph.h \
 		sgraph/scenegraphinfo.h \
 		sgraph/SceneXMLReader.h \
-		sgraph/TransformNode.h main.cpp \
+		sgraph/TransformNode.h \
+		_3DRay.h \
+		hitrecord.h main.cpp \
 		OpenGLWindow.cpp \
 		View.cpp
 QMAKE_TARGET  = KevinLerong
@@ -631,7 +633,7 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents ../../../Qt/5.12.0/clang_64/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents OpenGLWindow.h VertexAttrib.h View.h sgraph/AbstractNode.h sgraph/GLScenegraphRenderer.h sgraph/GroupNode.h sgraph/INode.h sgraph/IScenegraph.h sgraph/LeafNode.h sgraph/Scenegraph.h sgraph/scenegraphinfo.h sgraph/SceneXMLReader.h sgraph/TransformNode.h $(DISTDIR)/
+	$(COPY_FILE) --parents OpenGLWindow.h VertexAttrib.h View.h sgraph/AbstractNode.h sgraph/GLScenegraphRenderer.h sgraph/GroupNode.h sgraph/INode.h sgraph/IScenegraph.h sgraph/LeafNode.h sgraph/Scenegraph.h sgraph/scenegraphinfo.h sgraph/SceneXMLReader.h sgraph/TransformNode.h _3DRay.h hitrecord.h $(DISTDIR)/
 	$(COPY_FILE) --parents main.cpp OpenGLWindow.cpp View.cpp $(DISTDIR)/
 
 

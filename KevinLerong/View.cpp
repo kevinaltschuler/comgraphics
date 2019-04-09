@@ -23,6 +23,7 @@ View::View()
   up = glm::vec3(0.0, 1.0, 0.0);
   zoom = 0;
   renderCamera = false;
+  rayTrace = false;
 }
 
 View::~View()
@@ -107,9 +108,6 @@ void View::draw(util::OpenGLFunctions& gl)
       time = 0;
   }
 
-  if (renderCamera)
-    cameraScenegraph->animate(time);
-
   /*
          *In order to change the shape of this triangle, we can either move the vertex positions above, or "transform" them
          * We use a modelview matrix to store the transformations to be applied to our triangle.
@@ -123,56 +121,38 @@ void View::draw(util::OpenGLFunctions& gl)
                 glm::vec3(0.0, 50.0, 0.0),
                 glm::vec3(0.0, 1.0, 0.0)) * trackballTransform;
 
-  /*
-    *Supply the shader with all the matrices it expects.
-    */
-  gl.glUniformMatrix4fv(shaderLocations.getLocation("projection"),
-                        1,
-                        false,
-                        glm::value_ptr(proj));
-
-  //gl.glPolygonMode(GL.GL_FRONT_AND_BACK,GL3.GL_LINE); //OUTLINES
-
-  if (renderCamera) {
-      cameramodelview.push(glm::mat4(1) * glm::lookAt(glm::vec3(eye.x, eye.y, eye.z + zoom),
-                                                      center,
-                                                      up));
-
-      if (fixedCamera) {
-          scenegraph->draw(modelview);
-          modelview.push(modelview.top() * glm::inverse(glm::lookAt(eye, center, up)));
-          cameraScenegraph->draw(modelview);
-          modelview.pop();
-      } else {
-          scenegraph->draw(cameramodelview);
-      }
-
-      gl.glScissor(WINDOW_WIDTH / 3 * 4, WINDOW_HEIGHT / 3 * 4, WINDOW_WIDTH / 3,
-              WINDOW_HEIGHT / 3);
-
-      gl.glEnable(GL_SCISSOR_TEST);
-      gl.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
-      gl.glViewport(WINDOW_WIDTH / 3 * 4, WINDOW_HEIGHT / 3 * 4, WINDOW_WIDTH / 3,
-              WINDOW_HEIGHT / 3);
-
-      if (fixedCamera) {
-          scenegraph->draw(cameramodelview);
-      } else {
-          scenegraph->draw(modelview);
-          modelview.push(modelview.top() * glm::inverse(glm::lookAt(eye, center, up)));
-          cameraScenegraph->draw(modelview);
-          modelview.pop();
-      }
-
-      gl.glDisable(GL_SCISSOR_TEST);
+  if (rayTrace) {
+      printf("raytrace\n");
+      raytrace(WINDOW_WIDTH, WINDOW_HEIGHT, modelview);
+      rayTrace = false;
   } else {
+
+      /*
+        *Supply the shader with all the matrices it expects.
+        */
+      gl.glUniformMatrix4fv(shaderLocations.getLocation("projection"),
+                            1,
+                            false,
+                            glm::value_ptr(proj));
+
       scenegraph->draw(modelview);
+
+      gl.glFlush();
+
+      program.disable(gl);
   }
+}
 
-  gl.glFlush();
+void View::raytrace(int w, int h, stack<glm::mat4> stack) {
+    glm::vec3 colors[w][h];
 
-  program.disable(gl);
+    for (int i = 0; i < w; i++) {
+      for (int j = 0; j < h; j++) {
+        //_3DRay ray = calculate the ray to be cast here;
+         _3DRay ray = _3DRay(glm::vec3(0,0,0), glm::vec3(0,0,0));
+        colors[i][j] = scenegraph->raycast(ray, stack);
+      }
+    }
 }
 
 
@@ -290,6 +270,10 @@ void View::onKeyPressed(int key) {
 
     if(key == Qt::Key_Minus){
         zoom += 1;
+    }
+
+    if(key == Qt::Key_R){
+        rayTrace = true;
     }
 
 }

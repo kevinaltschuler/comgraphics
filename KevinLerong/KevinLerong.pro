@@ -28,4 +28,6 @@ HEADERS += \
     sgraph/Scenegraph.h \
     sgraph/scenegraphinfo.h \
     sgraph/SceneXMLReader.h \
-    sgraph/TransformNode.h
+    sgraph/TransformNode.h \
+    _3DRay.h \
+    hitrecord.h
