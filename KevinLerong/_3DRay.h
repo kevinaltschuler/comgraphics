@@ -16,12 +16,6 @@ public:
 
     glm::vec4 pos;
     glm::vec4 dir;
-
-    _3DRay mul(glm::mat4 transform) {
-        _3DRay ray = _3DRay(this->pos * transform, this->dir * transform);
-
-        return ray;
-    }
 private:
 
 };

@@ -8,6 +8,9 @@
 #include <map>
 #include <stack>
 #include <string>
+#include <glm/gtx/string_cast.hpp>
+#include <iostream>
+
 using namespace std;
 
 namespace sgraph
@@ -96,8 +99,7 @@ public:
     }
 
     HitRecord getIntersection(_3DRay ray, stack<glm::mat4>& modelview) {
-        glm::mat4 matrixRay = glm::inverse(glm::mat4(modelview.top()));
-        _3DRay newRay = ray.mul(matrixRay);
+        glm::mat4 transform = glm::inverse(modelview.top());
         HitRecord newOne = HitRecord();
 
         if (objInstanceName.find("box") != std::string::npos) {
@@ -105,25 +107,27 @@ public:
         }
         else if (objInstanceName.find("sphere") != std::string::npos) {
             HitRecord result = HitRecord();
-            glm::vec4 pos = newRay.pos;
-            glm::vec4 dir = newRay.dir;
+            glm::vec4 pos = ray.pos * transform;
+            glm::vec4 dir = ray.dir * transform;
 
-            //printf("%f %f %f \n", dir.x, dir.y, dir.z);
+            //printf("ray: %f %f %f \n", ray.pos.x, ray.pos.y, ray.pos.z);
+            //printf("pos: %f %f %f \n", pos.x, pos.y, pos.z);
 
             float A = dir.x * dir.x + dir.y*dir.y + dir.z*dir.z;
-            float B = 2* (dir.x*(pos.x-0) +dir.y*(pos.y-0)+dir.z*(pos.z-0)); // center: (0,0,0)
-            float C = (pos.x - 0) * (pos.x - 0)
-              + (pos.y - 0)*(pos.y - 0)
-              + (pos.z - 0)*(pos.z - 0)
+            float B = 2* (dir.x*pos.x + dir.y*pos.y + dir.z*pos.z); // center: (0,0,0)
+            float C = pos.x*pos.x
+              + pos.y*pos.y
+              + pos.z*pos.z
               -1;
 
-            printf("A:%f B:%f C:%f \n", A, B, C);
+            //printf("A:%f B:%f C:%f \n", A, B, C);
 
             float delta = B*B - 4 * A * C;
 
             if (delta >= 0 ) {
                 float t1 = B*(-1)-((float) sqrt(delta))/(2*A);
                 float t2 = B*(-1)+((float) sqrt(delta))/(2*A);
+                printf("t1 %f t2 %f \n", t1, t2);
                 float tMin = min(t1, t2);
                 if (tMin > 0 ) {
                     printf("t min than 0 \n");
