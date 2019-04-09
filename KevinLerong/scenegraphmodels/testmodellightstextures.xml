@@ -17,8 +17,8 @@
 
 	<transform>
 		<set>
-			<translate> 0 0 0 </translate>
-			<scale> 72 72 72 </scale> <!-- humanoid of height 72 -->
+			<translate> 0 0 -2 </translate>
+			<scale> 1 1 1 </scale>
 		</set>
 
 		<object instanceof="sphere" texture="checkerboard">

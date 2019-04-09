@@ -99,7 +99,7 @@ public:
     }
 
     HitRecord getIntersection(_3DRay ray, stack<glm::mat4>& modelview) {
-        glm::mat4 transform = glm::inverse(modelview.top());
+        glm::mat4 transform = glm::inverse(glm::mat4(modelview.top()));
         HitRecord newOne = HitRecord();
 
         if (objInstanceName.find("box") != std::string::npos) {
@@ -107,37 +107,41 @@ public:
         }
         else if (objInstanceName.find("sphere") != std::string::npos) {
             HitRecord result = HitRecord();
-            glm::vec4 pos = ray.pos * transform;
-            glm::vec4 dir = ray.dir * transform;
 
-            //printf("ray: %f %f %f \n", ray.pos.x, ray.pos.y, ray.pos.z);
-            //printf("pos: %f %f %f \n", pos.x, pos.y, pos.z);
+//            printf("%s", glm::to_string(modelview.top()).c_str());
+
+//            printf("ray pos: %f %f %f %f \n", ray.pos.x, ray.pos.y, ray.pos.z, ray.pos.operator[](3));
+//            printf("ray dir: %f %f %f \n", ray.dir.x, ray.dir.y, ray.dir.z);
+
+            glm::vec4 pos = ray.pos * modelview.top();
+            glm::vec4 dir = ray.dir * modelview.top();
+
+
+//            printf("pos: %f %f %f \n", pos.x, pos.y, pos.z);
+//            printf("dir: %f %f %f \n", dir.x, dir.y, dir.z);
 
             float A = dir.x * dir.x + dir.y*dir.y + dir.z*dir.z;
-            float B = 2* (dir.x*pos.x + dir.y*pos.y + dir.z*pos.z); // center: (0,0,0)
-            float C = pos.x*pos.x
-              + pos.y*pos.y
-              + pos.z*pos.z
-              -1;
+            float B = 2* (dir.x*pos.x + dir.y*pos.y + dir.z*pos.z);
+            float C = pos.x*pos.x + pos.y*pos.y + pos.z*pos.z - 1;
 
             //printf("A:%f B:%f C:%f \n", A, B, C);
 
-            float delta = B*B - 4 * A * C;
+            float d = B*B - 4 * A * C;
 
-            if (delta >= 0 ) {
-                float t1 = B*(-1)-((float) sqrt(delta))/(2*A);
-                float t2 = B*(-1)+((float) sqrt(delta))/(2*A);
-                printf("t1 %f t2 %f \n", t1, t2);
+            if (d >= 0 ) {
+                float t1 = (-1.0 * B) - sqrt(d) / (2*A);
+                float t2 = (-1.0 * B) + sqrt(d) / (2*A);
+                //printf("t1 %f t2 %f \n", t1, t2);
                 float tMin = min(t1, t2);
-                if (tMin > 0 ) {
+                if (tMin > 0) {
                     printf("t min than 0 \n");
-                    glm::vec4 newIntersectP = pos + dir * tMin;
+                    glm::vec4 inter = pos + dir * tMin;
                     modelview.push(modelview.top());
                     modelview.top() = glm::transpose(glm::inverse(modelview.top()));
-                    glm::vec4 normal = newIntersectP * modelview.top();
+                    glm::vec4 normal = inter * modelview.top();
                     normal = glm::vec4(normal.x, normal.y, normal.z, 0);
                     modelview.pop();
-                    result = HitRecord(tMin, newIntersectP, normal, this->getMaterial());
+                    result = HitRecord(tMin, inter, normal, this->getMaterial());
                 }
             }
             return result;

@@ -88,8 +88,7 @@ void View::init(util::OpenGLFunctions& gl) throw(runtime_error)
   shaderLocations = program.getAllShaderVariables(gl);
 }
 
-void View::draw(util::OpenGLFunctions& gl)
-{
+void View::draw(util::OpenGLFunctions& gl) {
   gl.glClearColor(0,0,0,1);
   gl.glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
   gl.glEnable(GL_DEPTH_TEST);
@@ -119,9 +118,9 @@ void View::draw(util::OpenGLFunctions& gl)
 
 
   modelview.top() = modelview.top() *
-          glm::lookAt(glm::vec3(0.0, 0.0, 200.0),
-                glm::vec3(0.0, 50.0, 0.0),
-                glm::vec3(0.0, 1.0, 0.0)) * trackballTransform;
+          glm::lookAt(glm::vec3(0.0, 0.0, 0.0),
+                glm::vec3(0.0, 0.0, -2.0),
+                glm::vec3(0.0, 1.0, 0.0));// * trackballTransform;
 
   if (rayTrace) {
       printf("raytrace\n");
@@ -152,10 +151,16 @@ void View::raytrace(int w, int h, stack<glm::mat4> stack) {
       for (int j = 0; j < h; j++) {
         //_3DRay ray = calculate the ray to be cast here;
          _3DRay ray = _3DRay(glm::vec4(0,0,0,1), glm::vec4(i - w / 2, j - h / 2,
-                                       (float) (-0.5f * h / tan((float) (60*PI) / 180)), 0));
+                                       (float) ((-0.5f * h) / 1.73205080757), 0));
         colors[i][j] = scenegraph->raycast(ray, stack);
-        if (colors[i][j].x != 0.0f && colors[i][j].y != 0.0f && colors[i][j].z != 0.0f)
-            printf("%f %f %f \n", colors[i][j].x, colors[i][j].y, colors[i][j].z);
+//        if (colors[i][j].x != 0.0f && colors[i][j].y != 0.0f && colors[i][j].z != 0.0f)
+//            printf("%f %f %f \n", colors[i][j].x, colors[i][j].y, colors[i][j].z);
+      }
+    }
+
+    for (int i = 0; i < w; i++) {
+      for (int j = 0; j < h; j++) {
+        printf("%f %f %f \n", colors[i][j].x, colors[i][j].y, colors[i][j].z);
       }
     }
 }

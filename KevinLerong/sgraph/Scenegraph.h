@@ -132,8 +132,10 @@ namespace sgraph
         HitRecord hitRecord = getRoot()->getIntersection(ray, modelview);
 
         if (hitRecord.hit) {
-            printf("hit");
+            //printf("hit\n");
             color = shade(hitRecord);
+        } else {
+            //printf("not hit \n");
         }
 
         return color;
